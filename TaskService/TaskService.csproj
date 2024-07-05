@@ -224,6 +224,7 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\kodakb2c - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\kodakb2c - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LsgB2CTestApp - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
