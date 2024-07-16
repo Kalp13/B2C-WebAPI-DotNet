@@ -14,11 +14,11 @@ namespace Sample.ExternalIdentities
     {
         [Function("SignUpValidation")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
-            ILogger log)
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
         {
+            var log = new LoggerFactory().CreateLogger("SignUpValidation");
             // Allowed domains
-            string[] allowedDomain = { "fabrikam.com", "fabricam.com", "tridenttestdev.onmicrosoft.com" };
+            string[] allowedDomain = { "live.com", "live.co.za", "gmail.com", "rfktestdomain.onmicrosoft.com" };
 
             // Check HTTP basic authorization
             if (!Authorize(req, log))
