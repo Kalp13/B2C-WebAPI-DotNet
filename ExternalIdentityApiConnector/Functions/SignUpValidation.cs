@@ -15,7 +15,7 @@ namespace csharp.Functions
     {
         [Function("SignUpValidation")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "SignUpValidation")] HttpRequest req)
         {
             var log = new LoggerFactory().CreateLogger("SignUpValidation");
             // Allowed domains
@@ -114,7 +114,7 @@ namespace csharp.Functions
         }
 
         [Function("AddClaims")]
-        public static async Task<IActionResult> AddClaims([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
+        public static async Task<IActionResult> AddClaims([HttpTrigger(AuthorizationLevel.Function, "post", Route = "AddClaims")] HttpRequest req)
         {
 
             var log = new LoggerFactory().CreateLogger("AddClaims");
@@ -153,10 +153,10 @@ namespace csharp.Functions
             string domain = data.email.ToString().Split("@")[1];
 
             // If displayName claim doesn't exist, or it is too short, show validation error message. So, user can fix the input data.
-            if (data.displayName == null || data.displayName.ToString().Length < 5)
-            {
-                return new BadRequestObjectResult(new ResponseContent("ValidationError", "Please provide a Display Name with at least five characters."));
-            }
+            //if (data.displayName == null || data.displayName.ToString().Length < 5)
+            //{
+            //    return new BadRequestObjectResult(new ResponseContent("ValidationError", "Please provide a Display Name with at least five characters."));
+            //}
 
             // Input validation passed successfully, return `Allow` response.
             // TO DO: Configure the claims you want to return
