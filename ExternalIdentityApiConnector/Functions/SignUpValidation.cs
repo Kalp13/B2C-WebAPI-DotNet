@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using System.Linq;
 using Microsoft.Azure.Functions.Worker;
 using Sample.ExternalIdentities;
+using Microsoft.AspNetCore.Http.HttpResults;
+using System.Diagnostics.Eventing.Reader;
 
 namespace csharp.Functions
 {
@@ -133,7 +135,12 @@ namespace csharp.Functions
             // If input data is null, show block page
             if (data == null)
             {
-                return new OkObjectResult(new ResponseContent("ShowBlockPage", "There was a problem with your request."));
+                return new OkObjectResult(new ResponseContent("ShowBlockPage", "There was a problem with your request."))
+                {
+                    ContentTypes = { "application/json" },
+                    StatusCode = StatusCodes.Status200OK,
+                };
+                //return new OkObjectResult(new ResponseContent("ShowBlockPage", "There was a problem with your request."));
             }
 
             // Print out the request body
@@ -144,13 +151,13 @@ namespace csharp.Functions
             log.LogInformation($"Current language: {language}");
 
             // If email claim not found, show block page. Email is required and sent by default.
-            if (data.email == null || data.email.ToString() == "" || data.email.ToString().Contains("@") == false)
+            if (!IsEmailValid(data))
             {
                 return new OkObjectResult(new ResponseContent("ShowBlockPage", "Email name is mandatory."));
             }
 
             // Get domain of email address
-            string domain = data.email.ToString().Split("@")[1];
+            string domain = GetDomain(data);
 
             // If displayName claim doesn't exist, or it is too short, show validation error message. So, user can fix the input data.
             //if (data.displayName == null || data.displayName.ToString().Length < 5)
@@ -164,7 +171,43 @@ namespace csharp.Functions
             {
                 jobTitle = "This is a fake job title"//,
                 // You can also return
-            });
+            })
+            { 
+                ContentTypes = { "application/json" },
+                StatusCode = StatusCodes.Status200OK,
+                Value = new { jobTitle = "This is a fake job title" }
+            };
+        }
+
+        private static string GetDomain(dynamic data)
+        {
+            string email = String.Empty;
+            if (!String.IsNullOrWhiteSpace(data.email) && data.email.Contains('@'))
+            {
+                email = data.email;
+            }
+            else if (data.emails.Count > 0 && ((string[])data.emails).All(x => !String.IsNullOrWhiteSpace(x) && x.Contains('@')))
+            {
+                email =  ((string[])data.emails).FirstOrDefault(x => !String.IsNullOrWhiteSpace(x) && x.Contains('@'));
+            }
+
+            return email.ToString().Split("@")[1];
+        }
+
+        private static bool IsEmailValid(dynamic data)
+        {
+            if (!String.IsNullOrWhiteSpace(data.email) && data.email.Contains('@'))
+            {
+                return true;
+            }
+            else if (data.emails.Count > 0 && ((string[])data.emails).All(x => !String.IsNullOrWhiteSpace(x) && x.Contains('@')))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
