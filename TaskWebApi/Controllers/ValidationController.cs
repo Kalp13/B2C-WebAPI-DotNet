@@ -7,6 +7,12 @@ namespace TaskWebApi.Controllers
     [ApiController]
     public class ValidationController : ControllerBase
     {
+        [HttpGet("ValidateActive")]
+        public IActionResult ValidateActive()
+        {
+            return Ok("API Active");
+        }
+
         [HttpPost("ValidateAccessCode")]
         public async Task<IActionResult> ValidateAccessCode([FromBody] string accessCode)
         {
