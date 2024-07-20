@@ -96,6 +96,53 @@
             <ClaimType Id="isValidAccessCode">
                 <DataType>boolean</DataType>
             </ClaimType>
+            <ClaimType Id="userPrincipalName">
+                <DisplayName>UserPrincipalName</DisplayName>
+                <DataType>string</DataType>
+                <UserHelpText>Your user name as stored in the Azure Active Directory.</UserHelpText>
+            </ClaimType>
+            <ClaimType Id="passwordPolicies">
+                <DisplayName>Password Policies</DisplayName>
+                <DataType>string</DataType>
+                <UserHelpText>Password policies used by Azure AD to determine password strength,
+                    expiry etc.</UserHelpText>
+            </ClaimType>
+            <ClaimType Id="verificationCode">
+                <DisplayName>Verification Code</DisplayName>
+                <DataType>string</DataType>
+                <UserHelpText>Enter your verification code</UserHelpText>
+                <UserInputType>TextBox</UserInputType>
+            </ClaimType>
+            <ClaimType Id="grant_type">
+                <DisplayName>grant_type</DisplayName>
+                <DataType>string</DataType>
+                <UserHelpText>Special parameter passed for local account authentication to
+                    login.microsoftonline.com.</UserHelpText>
+            </ClaimType>
+            <ClaimType Id="scope">
+                <DisplayName>scope</DisplayName>
+                <DataType>string</DataType>
+                <UserHelpText>Special parameter passed for local account authentication to
+                    login.microsoftonline.com.</UserHelpText>
+            </ClaimType>
+            <ClaimType Id="nca">
+                <DisplayName>nca</DisplayName>
+                <DataType>string</DataType>
+                <UserHelpText>Special parameter passed for local account authentication to
+                    login.microsoftonline.com.</UserHelpText>
+            </ClaimType>
+            <ClaimType Id="client_id">
+                <DisplayName>client_id</DisplayName>
+                <DataType>string</DataType>
+                <AdminHelpText>Special parameter passed to EvoSTS.</AdminHelpText>
+                <UserHelpText>Special parameter passed to EvoSTS.</UserHelpText>
+            </ClaimType>
+            <ClaimType Id="resource_id">
+                <DisplayName>resource_id</DisplayName>
+                <DataType>string</DataType>
+                <AdminHelpText>Special parameter passed to EvoSTS.</AdminHelpText>
+                <UserHelpText>Special parameter passed to EvoSTS.</UserHelpText>
+            </ClaimType>
         </ClaimsSchema>
         <!-- Predicates Here -->
         <!-- Has to be directly after the Claims Schema -->
@@ -302,6 +349,25 @@
                     <InputParameter Id="valueToCompareTo" DataType="boolean" Value="true" />
                 </InputParameters>
             </ClaimsTransformation>
+            <!-- <ClaimsTransformation Id="GenerateRequestBodyClaimsTransformation"
+            TransformationMethod="GenerateJson">
+                <InputClaims>
+                    <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="customerEntity.email" />
+                    <InputClaim ClaimTypeReferenceId="objectId" TransformationClaimType="customerEntity.userObjectId"
+            />
+                    <InputClaim ClaimTypeReferenceId="givenName" TransformationClaimType="customerEntity.firstName" />
+                    <InputClaim ClaimTypeReferenceId="surname" TransformationClaimType="customerEntity.lastName" />
+                    <InputClaim ClaimTypeReferenceId="accessCode" TransformationClaimType="customerEntity.accessCode"
+            />
+                </InputClaims>
+                <InputParameters>
+                    <InputParameter Id="customerEntity.role.name" DataType="string" Value="Administrator" />
+                    <InputParameter Id="customerEntity.role.id" DataType="long" Value="1" />
+                </InputParameters>
+                <OutputClaims>
+                    <OutputClaim ClaimTypeReferenceId="requestBodyPayload" TransformationClaimType="outputClaim" />
+                </OutputClaims>
+            </ClaimsTransformation> -->
         </ClaimsTransformations>
         <!-- Content Definitions Here -->
         <ContentDefinitions>
@@ -310,7 +376,41 @@
                 <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
                 <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
             </ContentDefinition>
+        <ContentDefinition Id="SignupOrSigninContentDefinition">
+            <LoadUri>~/tenant/templates/AzureBlue/unified.cshtml</LoadUri>
+            <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+            <DataUri>urn:com:microsoft:aad:b2c:elements:contract:unifiedssp:2.1.7</DataUri>
+            <Metadata>
+                <Item Key="DisplayName">Signin and Signup</Item>
+            </Metadata>
+        </ContentDefinition>
         </ContentDefinitions>
+        <!-- Display Controls Here -->
+        <DisplayControls>
+            <DisplayControl Id="emailVerificationControl"
+                UserInterfaceControlType="VerificationControl">
+                <DisplayClaims>
+                    <DisplayClaim ClaimTypeReferenceId="email" Required="true" />
+                    <DisplayClaim ClaimTypeReferenceId="verificationCode"
+                        ControlClaimType="VerificationCode" Required="true" />
+                </DisplayClaims>
+                <OutputClaims></OutputClaims>
+                <Actions>
+                    <Action Id="SendCode">
+                        <ValidationClaimsExchange>
+                            <ValidationClaimsExchangeTechnicalProfile
+                                TechnicalProfileReferenceId="AadSspr-SendCode" />
+                        </ValidationClaimsExchange>
+                    </Action>
+                    <Action Id="VerifyCode">
+                        <ValidationClaimsExchange>
+                            <ValidationClaimsExchangeTechnicalProfile
+                                TechnicalProfileReferenceId="AadSspr-VerifyCode" />
+                        </ValidationClaimsExchange>
+                    </Action>
+                </Actions>
+            </DisplayControl>
+        </DisplayControls>
     </BuildingBlocks>
 
     <ClaimsProviders>
@@ -352,21 +452,27 @@
         <ClaimsProvider>
             <DisplayName>Technical Profiles to generate claims</DisplayName>
             <TechnicalProfiles>
-                <TechnicalProfile Id="ClaimGenerator">
-                    <DisplayName>Generate Object ID, displayName and message Claims Technical
-                        Profile.</DisplayName>
+                <TechnicalProfile Id="UserInputMessageClaimGenerator">
+                    <DisplayName>User Message Claim Generator Technical Profile</DisplayName>
                     <Protocol Name="Proprietary"
                         Handler="Web.TPEngine.Providers.ClaimsTransformationProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
                     <OutputClaims>
-                        <OutputClaim ClaimTypeReferenceId="objectId" />
-                        <OutputClaim ClaimTypeReferenceId="displayName" />
                         <OutputClaim ClaimTypeReferenceId="message" />
                     </OutputClaims>
                     <OutputClaimsTransformations>
-                        <OutputClaimsTransformation
-                            ReferenceId="GenerateRandomObjectIdTransformation" />
-                        <OutputClaimsTransformation ReferenceId="CreateDisplayNameTransformation" />
                         <OutputClaimsTransformation ReferenceId="CreateMessageTransformation" />
+                    </OutputClaimsTransformations>
+                </TechnicalProfile>
+
+                <TechnicalProfile Id="UserInputDisplayNameGenerator">
+                    <DisplayName>Display Name Claim Generator Technical Profile</DisplayName>
+                    <Protocol Name="Proprietary"
+                        Handler="Web.TPEngine.Providers.ClaimsTransformationProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+                    <OutputClaims>
+                        <OutputClaim ClaimTypeReferenceId="displayName" />
+                    </OutputClaims>
+                    <OutputClaimsTransformations>
+                        <OutputClaimsTransformation ReferenceId="CreateDisplayNameTransformation" />
                     </OutputClaimsTransformations>
                 </TechnicalProfile>
             </TechnicalProfiles>
@@ -386,7 +492,7 @@
                     <DisplayClaims>
                         <DisplayClaim ClaimTypeReferenceId="givenName" Required="true" />
                         <DisplayClaim ClaimTypeReferenceId="surname" Required="true" />
-                        <DisplayClaim ClaimTypeReferenceId="email" Required="true" />
+                        <DisplayClaim DisplayControlReferenceId="emailVerificationControl" />
                         <DisplayClaim ClaimTypeReferenceId="password" Required="true" />
                         <DisplayClaim ClaimTypeReferenceId="confirmPassword" Required="true" />
                     </DisplayClaims>
@@ -407,6 +513,8 @@
                                 </Precondition>
                             </Preconditions>
                         </ValidationTechnicalProfile>
+                        <ValidationTechnicalProfile ReferenceId="UserInputDisplayNameGenerator" />
+                        <ValidationTechnicalProfile ReferenceId="AAD-UserWrite" />
                     </ValidationTechnicalProfiles>
                 </TechnicalProfile>
                 <TechnicalProfile Id="CheckCompanyDomain">
@@ -496,9 +604,10 @@
                     <Metadata>
                         <Item Key="ServiceUrl">
                             https://taskwebapi20240719070204.azurewebsites.net/api/Validation/ValidateAccessCode</Item>
-                        <Item Key="SendClaimsIn">Body</Item>
+                        <Item Key="SendClaimsIn">QueryString</Item>
                         <Item Key="AuthenticationType">None</Item>
                         <Item Key="AllowInsecureAuthInProduction">true</Item>
+                        <Item Key="DebugMode">true</Item>
                     </Metadata>
                     <InputClaims>
                         <InputClaim ClaimTypeReferenceId="accessCode" PartnerClaimType="accessCode" />
@@ -506,39 +615,255 @@
                 </TechnicalProfile>
             </TechnicalProfiles>
         </ClaimsProvider>
+        <ClaimsProvider>
+            <DisplayName>Azure AD Technical Profiles</DisplayName>
+            <TechnicalProfiles>
+                <TechnicalProfile Id="AAD-UserWrite">
+                    <DisplayName>Write user information to AAD</DisplayName>
+                    <Protocol Name="Proprietary"
+                        Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+                    <Metadata>
+                        <Item Key="Operation">Write</Item>
+                        <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">false</Item>
+                        <Item Key="UserMessageIfClaimsPrincipalAlreadyExists">The account already
+                            exists. Try to create another account</Item>
+                    </Metadata>
+                    <InputClaims>
+                        <InputClaim ClaimTypeReferenceId="email"
+                            PartnerClaimType="signInNames.emailAddress" Required="true" />
+                    </InputClaims>
+                    <PersistedClaims>
+                        <PersistedClaim ClaimTypeReferenceId="email"
+                            PartnerClaimType="signInNames.emailAddress" />
+                        <PersistedClaim ClaimTypeReferenceId="displayName" />
+                        <PersistedClaim ClaimTypeReferenceId="givenName" />
+                        <PersistedClaim ClaimTypeReferenceId="surname" />
+                        <PersistedClaim ClaimTypeReferenceId="password" />
+                        <PersistedClaim ClaimTypeReferenceId="passwordPolicies"
+                            DefaultValue="DisablePasswordExpiration,DisableStrongPassword" />
+                    </PersistedClaims>
+                    <OutputClaims>
+                        <OutputClaim ClaimTypeReferenceId="objectId" />
+                        <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
+                        <OutputClaim ClaimTypeReferenceId="email"
+                            PartnerClaimType="signInNames.emailAddress" />
+                    </OutputClaims>
+                </TechnicalProfile>
+                <TechnicalProfile Id="AAD-UserRead">
+                    <DisplayName>Read user from Azure AD storage</DisplayName>
+                    <Protocol Name="Proprietary"
+                        Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+                    <Metadata>
+                        <Item Key="Operation">Read</Item>
+                        <Item Key="RaiseErrorIfClaimsPrincipalAlreadyExists">false</Item>
+                        <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">false</Item>
+                    </Metadata>
+                    <InputClaims>
+                        <InputClaim ClaimTypeReferenceId="email"
+                            PartnerClaimType="signInNames.emailAddress" Required="true" />
+                    </InputClaims>
+                    <OutputClaims>
+                        <OutputClaim ClaimTypeReferenceId="objectId" />
+                        <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
+                        <OutputClaim ClaimTypeReferenceId="givenName" />
+                        <OutputClaim ClaimTypeReferenceId="surname" />
+                        <OutputClaim ClaimTypeReferenceId="displayName" />
+                    </OutputClaims>
+                </TechnicalProfile>
+            </TechnicalProfiles>
+        </ClaimsProvider>
+        <ClaimsProvider>
+            <DisplayName>Azure AD self-service password reset (SSPR)</DisplayName>
+            <TechnicalProfiles>
+                <TechnicalProfile Id="AadSspr-SendCode">
+                    <DisplayName>Send Code</DisplayName>
+                    <Protocol Name="Proprietary"
+                        Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+                    <Metadata>
+                        <Item Key="Operation">SendCode</Item>
+                    </Metadata>
+                    <InputClaims>
+                        <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress" />
+                    </InputClaims>
+                </TechnicalProfile>
+                <TechnicalProfile Id="AadSspr-VerifyCode">
+                    <DisplayName>Verify Code</DisplayName>
+                    <Protocol Name="Proprietary"
+                        Handler="Web.TPEngine.Providers.AadSsprProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+                    <Metadata>
+                        <Item Key="Operation">VerifyCode</Item>
+                    </Metadata>
+                    <InputClaims>
+                        <InputClaim ClaimTypeReferenceId="verificationCode" />
+                        <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="emailAddress" />
+                    </InputClaims>
+                </TechnicalProfile>
+            </TechnicalProfiles>
+        </ClaimsProvider>
+            <ClaimsProvider>
+                <DisplayName>OpenID Connect Technical Profiles</DisplayName>
+                <TechnicalProfiles>
+                    <TechnicalProfile Id="SignInUser">
+                        <DisplayName>Sign in with Local Account</DisplayName>
+                        <Protocol Name="OpenIdConnect" />
+                        <Metadata>
+                            <Item Key="UserMessageIfClaimsPrincipalDoesNotExist">We didn't find this account</Item>
+                            <Item Key="UserMessageIfInvalidPassword">Your password or username is incorrect</Item>
+                            <Item Key="UserMessageIfOldPasswordUsed">You've used an old password.</Item>
+                            <Item Key="ProviderName">https://sts.windows.net/</Item>
+                            <Item Key="METADATA">https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration</Item>
+                            <Item Key="authorization_endpoint">https://login.microsoftonline.com/{tenant}/oauth2/token</Item>
+                            <Item Key="response_types">id_token</Item>
+                            <Item Key="response_mode">query</Item>
+                            <Item Key="scope">email openid</Item>
+                            <!-- Policy Engine Clients -->
+                            <Item Key="UsePolicyInRedirectUri">false</Item>
+                            <Item Key="HttpBinding">POST</Item>
+                            <Item Key="client_id">cf559881-8c11-4e44-ab13-9f6184fc9e09</Item>
+                            <Item Key="IdTokenAudience">2c50b1c6-ae8b-44b9-b20c-34140e8c30e1</Item>
+                        </Metadata>
+                        <InputClaims>
+                            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="username" Required="true" />
+                            <InputClaim ClaimTypeReferenceId="password" PartnerClaimType="password" Required="true" />
+                            <InputClaim ClaimTypeReferenceId="grant_type" DefaultValue="password" />
+                            <InputClaim ClaimTypeReferenceId="scope" DefaultValue="openid" />
+                            <InputClaim ClaimTypeReferenceId="nca" PartnerClaimType="nca" DefaultValue="1" />
+                            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="cf559881-8c11-4e44-ab13-9f6184fc9e09" />
+                            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="2c50b1c6-ae8b-44b9-b20c-34140e8c30e1" />
+                        </InputClaims>
+                        <OutputClaims>
+                            <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="oid" />
+                        </OutputClaims>
+                    </TechnicalProfile>
+                    <TechnicalProfile Id="UserSignInCollector">
+                        <DisplayName>Local Account Signin</DisplayName>
+                        <Protocol Name="Proprietary"
+                            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+                        <Metadata>
+                            <Item Key="setting.operatingMode">Email</Item>
+                            <Item Key="SignUpTarget">AccountTypeInputCollectorClaimsExchange</Item>
+                        </Metadata>
+                        <DisplayClaims>
+                            <DisplayClaim ClaimTypeReferenceId="email" Required="true" />
+                            <DisplayClaim ClaimTypeReferenceId="password" Required="true" />
+                        </DisplayClaims>
+                        <OutputClaims>
+                            <OutputClaim ClaimTypeReferenceId="email" />
+                            <OutputClaim ClaimTypeReferenceId="password"  />
+                            <OutputClaim ClaimTypeReferenceId="objectId" />
+                        </OutputClaims>
+                        <ValidationTechnicalProfiles>
+                            <ValidationTechnicalProfile ReferenceId="SignInUser" />
+                        </ValidationTechnicalProfiles>
+                    </TechnicalProfile>
+                </TechnicalProfiles>
+            </ClaimsProvider>
+            <ClaimsProvider>
+                <Domain>commonaad</Domain>
+                <DisplayName>Common AAD</DisplayName>
+                <TechnicalProfiles>
+                  <TechnicalProfile Id="AADCommon-OpenIdConnect">
+                    <DisplayName>Multi-Tenant AAD</DisplayName>
+                    <Description>Login with your Contoso account</Description>
+                    <Protocol Name="OpenIdConnect"/>
+                    <Metadata>
+                      <Item Key="METADATA">https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration</Item>
+                      <!-- Update the Client ID below to the Application ID -->
+                      <Item Key="client_id"></Item>
+                      <Item Key="response_types">code</Item>
+                      <Item Key="scope">openid email profile</Item>
+                      <Item Key="response_mode">form_post</Item>
+                      <Item Key="HttpBinding">POST</Item>
+                      <Item Key="UsePolicyInRedirectUri">false</Item>
+                      <Item Key="DiscoverMetadataByTokenIssuer">true</Item>
+                      <!-- The key below allows you to specify each of the Azure AD tenants that can be used to sign in. Update the GUIDs below for each tenant. -->
+                      <Item Key="ValidTokenIssuerPrefixes">https://sts.windows.net/</Item>
+                      <!-- The commented key below specifies that users from any tenant can sign-in. Uncomment if you would like anyone with an Azure AD account to be able to sign in. -->
+                      <!-- <Item Key="ValidTokenIssuerPrefixes">https://login.microsoftonline.com/</Item> -->
+                    </Metadata>
+                    <CryptographicKeys>
+                      <Key Id="client_secret" StorageReferenceId="B2C_1A_AADAppSecret"/>
+                    </CryptographicKeys>
+                    <OutputClaims>
+                      <OutputClaim ClaimTypeReferenceId="issuerUserId" PartnerClaimType="oid"/>
+                      <OutputClaim ClaimTypeReferenceId="givenName" PartnerClaimType="given_name" />
+                      <OutputClaim ClaimTypeReferenceId="surName" PartnerClaimType="family_name" />
+                      <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
+                      <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
+                      <OutputClaim ClaimTypeReferenceId="identityProvider" PartnerClaimType="iss" />
+                    </OutputClaims>
+                    <OutputClaimsTransformations>
+                      <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName"/>
+                      <OutputClaimsTransformation ReferenceId="CreateUserPrincipalName"/>
+                      <OutputClaimsTransformation ReferenceId="CreateAlternativeSecurityId"/>
+                      <OutputClaimsTransformation ReferenceId="CreateSubjectClaimFromAlternativeSecurityId"/>
+                    </OutputClaimsTransformations>
+                    <UseTechnicalProfileForSessionManagement ReferenceId="SM-SocialLogin"/>
+                  </TechnicalProfile>
+                </TechnicalProfiles>
+              </ClaimsProvider>
     </ClaimsProviders>
     <UserJourneys>
         <!-- User Journeys Here-->
         <UserJourney Id="HelloWorldJourney">
             <OrchestrationSteps>
-                <!--<OrchestrationSteps>-->
-                <OrchestrationStep Order="1" Type="ClaimsExchange">
-                    <ClaimsExchanges>
-                        <ClaimsExchange Id="AccountTypeInputCollectorClaimsExchange"
-                            TechnicalProfileReferenceId="AccountTypeInputCollector" />
-                    </ClaimsExchanges>
-                </OrchestrationStep>
-                <OrchestrationStep Order="2" Type="ClaimsExchange">
-                    <ClaimsExchanges>
-                        <ClaimsExchange Id="GetAccessCodeClaimsExchange"
-                            TechnicalProfileReferenceId="AccessCodeInputCollector" />
-                    </ClaimsExchanges>
-                </OrchestrationStep>
-                <OrchestrationStep Order="3" Type="ClaimsExchange">
-                    <ClaimsExchanges>
-                        <ClaimsExchange Id="GetUserInformationClaimsExchange"
-                            TechnicalProfileReferenceId="UserInformationCollector" />
-                    </ClaimsExchanges>
-                </OrchestrationStep>
-                <OrchestrationStep Order="4" Type="ClaimsExchange">
-                    <ClaimsExchanges>
-                        <ClaimsExchange Id="GetMessageClaimsExchange"
-                            TechnicalProfileReferenceId="ClaimGenerator" />
-                    </ClaimsExchanges>
-                </OrchestrationStep>
-                <OrchestrationStep Order="5" Type="SendClaims"
-                    CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
-                <!--</OrchestrationSteps>-->
+        <OrchestrationStep Order="1" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="SignupOrSigninContentDefinition">
+            <ClaimsProviderSelections>
+                <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
+            </ClaimsProviderSelections>
+            <ClaimsExchanges>
+                <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="UserSignInCollector" />
+            </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="2" Type="ClaimsExchange">
+            <Preconditions>
+                <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+                    <Value>objectId</Value>
+                    <Action>SkipThisOrchestrationStep</Action>
+                </Precondition>
+            </Preconditions>
+            <ClaimsExchanges>
+                <ClaimsExchange Id="AccountTypeInputCollectorClaimsExchange" TechnicalProfileReferenceId="AccountTypeInputCollector"/>
+            </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="3" Type="ClaimsExchange">
+            <Preconditions>
+                <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+                    <Value>objectId</Value>
+                    <Action>SkipThisOrchestrationStep</Action>
+                </Precondition>
+                <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+                  <Value>accountType</Value>
+                  <Value>company</Value>
+                  <Action>SkipThisOrchestrationStep</Action>
+                </Precondition>
+            </Preconditions>
+            <ClaimsExchanges>
+                <ClaimsExchange Id="GetAccessCodeClaimsExchange" TechnicalProfileReferenceId="AccessCodeInputCollector" />
+            </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="4" Type="ClaimsExchange">
+            <Preconditions>
+                <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+                    <Value>objectId</Value>
+                    <Action>SkipThisOrchestrationStep</Action>
+                </Precondition>
+            </Preconditions>
+            <ClaimsExchanges>
+                <ClaimsExchange Id="SignUpWithLogonEmailExchange" TechnicalProfileReferenceId="UserInformationCollector" />
+            </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="5" Type="ClaimsExchange">
+            <ClaimsExchanges>
+            <ClaimsExchange Id="AADUserReaderExchange" TechnicalProfileReferenceId="AAD-UserRead"/>
+            </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="6" Type="ClaimsExchange">
+            <ClaimsExchanges>
+            <ClaimsExchange Id="GetMessageClaimsExchange" TechnicalProfileReferenceId="UserInputMessageClaimGenerator"/>
+            </ClaimsExchanges>          
+        </OrchestrationStep>
+        <OrchestrationStep Order="7" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
             </OrchestrationSteps>
         </UserJourney>
     </UserJourneys>

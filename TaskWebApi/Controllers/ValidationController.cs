@@ -13,13 +13,13 @@ namespace TaskWebApi.Controllers
             return Ok("API Active");
         }
 
-        [HttpPost("ValidateAccessCode")]
-        public async Task<IActionResult> ValidateAccessCode([FromBody] string accessCode)
+        [HttpGet("ValidateAccessCode")]
+        public async Task<IActionResult> ValidateAccessCode([FromQuery] string accessCode)
         {
             // Validate the access code
             if (accessCode == "54321")
             {
-                return Ok();
+                return Ok("Success");
             }
             else
             {
