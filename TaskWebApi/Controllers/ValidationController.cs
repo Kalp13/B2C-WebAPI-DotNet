@@ -32,7 +32,7 @@ namespace TaskWebApi.Controllers
         }
 
         [HttpGet("LookupIdentity")]
-        public async Task<ActionResult<IdentityLookupResponse>> LookupIdentity(string email)
+        public async Task<ActionResult<IdentityLookupResponse>> LookupIdentity([FromQuery] string email)
         {
             try
             {
