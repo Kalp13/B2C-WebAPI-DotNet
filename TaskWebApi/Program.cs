@@ -1,6 +1,10 @@
+using TaskWebApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddTransient<IAzureAdLookupService, AzureAdLookupService>();
+builder.Services.AddTransient<IFederationResolver, FederationResolver>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
