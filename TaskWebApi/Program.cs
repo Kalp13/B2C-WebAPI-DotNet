@@ -2,6 +2,9 @@ using TaskWebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// The following line enables Application Insights telemetry collection.
+builder.Services.AddApplicationInsightsTelemetry();
+
 // Add services to the container.
 builder.Services.AddTransient<IAzureAdLookupService, AzureAdLookupService>();
 builder.Services.AddTransient<IFederationResolver, FederationResolver>();

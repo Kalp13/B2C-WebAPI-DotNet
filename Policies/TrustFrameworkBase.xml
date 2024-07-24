@@ -64,9 +64,6 @@
       <ClaimType Id="signInName">
         <DisplayName>Sign in name</DisplayName>
         <DataType>string</DataType>
-        <DefaultPartnerClaimTypes>
-            <Protocol Name="OpenIdConnect" PartnerClaimType="email" />
-        </DefaultPartnerClaimTypes>
         <UserHelpText />
         <UserInputType>TextBox</UserInputType>
         <Restriction>
@@ -625,6 +622,7 @@
             <!-- Policy Engine Clients -->
             <Item Key="UsePolicyInRedirectUri">false</Item>
             <Item Key="HttpBinding">POST</Item>
+            <Item Key="setting.enableRememberMe">True</Item>
           </Metadata>
           <InputClaims>
             <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="username"
@@ -716,8 +714,7 @@
             <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="login_hint" />
           </InputClaims>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="socialIdpAuthentication" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" />
             <OutputClaim ClaimTypeReferenceId="identityProvider" PartnerClaimType="iss" />
             <OutputClaim ClaimTypeReferenceId="issuerUserId" PartnerClaimType="sub" />
             <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />

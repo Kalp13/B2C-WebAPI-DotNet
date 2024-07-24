@@ -71,7 +71,7 @@
         <LocalizedStrings>
           <LocalizedString ElementType="ClaimType" ElementId="signInName" StringId="DisplayName">Email Address</LocalizedString>
           <LocalizedString ElementType="UxElement" StringId="heading">Sign in</LocalizedString>
-          <LocalizedString ElementType="UxElement" StringId="social_intro">Sign in with your social account</LocalizedString>
+          <LocalizedString ElementType="UxElement" StringId="social_intro">OR</LocalizedString>
           <LocalizedString ElementType="UxElement" StringId="local_intro_generic">Sign in with your {0}</LocalizedString>
           <LocalizedString ElementType="ClaimType" ElementId="password" StringId="DisplayName">Password</LocalizedString>
           <LocalizedString ElementType="UxElement" StringId="requiredField_password">Please enter your password</LocalizedString>
@@ -87,9 +87,9 @@
           <LocalizedString ElementType="UxElement" StringId="unknown_error">We are having trouble signing you in. Please try again later.</LocalizedString>
           <!-- Uncomment the remember_me only if the keep me signed in is activated. 
           <LocalizedString ElementType="UxElement" StringId="remember_me">Keep me signed in</LocalizedString> -->
-          <LocalizedString ElementType="ClaimsProvider" StringId="FacebookExchange">Continue with Facebook</LocalizedString>
-          <LocalizedString ElementType="ClaimsProvider" StringId="GoogleExchange">Continue with Google</LocalizedString>
-          <LocalizedString ElementType="ClaimsProvider" StringId="MicrosoftExchange">Continue with Microsoft</LocalizedString>
+          <LocalizedString ElementType="ClaimsProvider" StringId="FacebookExchange"></LocalizedString>
+          <LocalizedString ElementType="ClaimsProvider" StringId="GoogleExchange"></LocalizedString>
+          <LocalizedString ElementType="ClaimsProvider" StringId="MicrosoftAccountExchange"></LocalizedString>
           <LocalizedString ElementType="ErrorMessage" StringId="ResourceOwnerFlowInvalidCredentials">Your password is incorrect.</LocalizedString>
           <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfInvalidPassword">Your password is incorrect.</LocalizedString>
           <LocalizedString ElementType="ErrorMessage" StringId="UserMessageIfPasswordExpired">Your password has expired.</LocalizedString>
@@ -215,7 +215,7 @@
           <LocalizedString ElementType="ClaimsProvider" StringId="LocalAccountSigninEmailExchange">Local Account Signin</LocalizedString>
           <LocalizedString ElementType="ClaimsProvider" StringId="FacebookExchange">Facebook</LocalizedString>
           <LocalizedString ElementType="ClaimsProvider" StringId="GoogleExchange">Google</LocalizedString>
-          <LocalizedString ElementType="ClaimsProvider" StringId="MicrosoftExchange">Microsoft Account</LocalizedString>
+          <LocalizedString ElementType="ClaimsProvider" StringId="MicrosoftAccountExchange">Microsoft Account</LocalizedString>
         </LocalizedStrings>
       </LocalizedResources>
       <!-- Edit profile sign-in with local account English-->

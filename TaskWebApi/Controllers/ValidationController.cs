@@ -36,14 +36,19 @@ namespace TaskWebApi.Controllers
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    return this.UnprocessableEntity("Email is required");
+                }
+
                 AzureADB2CUserQueryResponse usersMatchingEmail = await _azureAdLookupService.Lookup(email);
                 var identityResponse = new IdentityLookupResponse();
                 if (usersMatchingEmail?.value?.Length > 0 && usersMatchingEmail.value?.FirstOrDefault()?.objectId != null)
                 {
                     identityResponse.IdentityProviders = new List<string>
-                {
-                    "micrososft.online.com"
-                };
+                    {
+                        "micrososft.online.com"
+                    };
                     identityResponse.Exists = true;
                     identityResponse.IsOnboarded = true;
                     return identityResponse;

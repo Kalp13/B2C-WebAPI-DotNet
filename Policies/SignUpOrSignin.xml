@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
-  PolicySchemaVersion="0.3.0.0"
-  TenantId="tridentdevlsg.onmicrosoft.com"
-  PolicyId="B2C_1A_signup_signin"
-  PublicPolicyUri="http://tridentdevlsg.onmicrosoft.com/B2C_1A_signup_signin"
-  DeploymentMode="Development"
-  UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights">
+  xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="tridentdevlsg.onmicrosoft.com" PolicyId="B2C_1A_signup_signin" PublicPolicyUri="http://tridentdevlsg.onmicrosoft.com/B2C_1A_signup_signin" DeploymentMode="Development" UserJourneyRecorderEndpoint="urn:journeyrecorder:applicationinsights">
 
   <BasePolicy>
     <TenantId>tridentdevlsg.onmicrosoft.com</TenantId>
@@ -15,6 +9,13 @@
   </BasePolicy>
   <BuildingBlocks>
     <ClaimsSchema>
+      <ClaimType Id="signInName">
+        <DisplayName>Enter your Email address</DisplayName>
+        <UserHelpText>Email address to use for signing in.</UserHelpText>
+        <Restriction>
+            <Pattern RegularExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" HelpText="The email you provided is not valid." />
+        </Restriction>
+    </ClaimType>
       <ClaimType Id="message">
         <DisplayName>Will hold Hello World message</DisplayName>
         <DataType>string</DataType>
@@ -28,26 +29,26 @@
         <DisplayName>Single Sign-on user exists</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
-          <Protocol Name="OAuth2" PartnerClaimType="tid" />
-          <Protocol Name="OpenIdConnect" PartnerClaimType="tid" />
-          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/ssoExists" />
+          <Protocol Name="OAuth2" PartnerClaimType="exists" />
+          <Protocol Name="OpenIdConnect" PartnerClaimType="exists" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/exists" />
         </DefaultPartnerClaimTypes>
       </ClaimType>
       <ClaimType Id="isOnboarded">
         <DisplayName>User has been onboarded to platform</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
-          <Protocol Name="OAuth2" PartnerClaimType="tid" />
-          <Protocol Name="OpenIdConnect" PartnerClaimType="tid" />
-          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/isOnboarded" />
+          <Protocol Name="OAuth2" PartnerClaimType="onboarded" />
+          <Protocol Name="OpenIdConnect" PartnerClaimType="onboarded" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/onboarded" />
         </DefaultPartnerClaimTypes>
       </ClaimType>
       <ClaimType Id="force">
         <DisplayName>Force user sign in for SSO</DisplayName>
         <DataType>string</DataType>
         <DefaultPartnerClaimTypes>
-          <Protocol Name="OAuth2" PartnerClaimType="tid" />
-          <Protocol Name="OpenIdConnect" PartnerClaimType="tid" />
+          <Protocol Name="OAuth2" PartnerClaimType="force" />
+          <Protocol Name="OpenIdConnect" PartnerClaimType="force" />
           <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/force" />
         </DefaultPartnerClaimTypes>
       </ClaimType>
@@ -87,8 +88,7 @@
             Transformations</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
-            <Item Key="ServiceUrl">
-              https://taskwebapi20240719070204.azurewebsites.net/api/Validation/ValidateAccessCode</Item>
+            <Item Key="ServiceUrl">https://taskwebapi20240719070204.azurewebsites.net/api/Validation/ValidateAccessCode</Item>
             <Item Key="SendClaimsIn">QueryString</Item>
             <Item Key="AuthenticationType">None</Item>
             <Item Key="AllowInsecureAuthInProduction">true</Item>
@@ -107,15 +107,15 @@
           <DisplayName>Check the user identity</DisplayName>
           <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
-            <Item Key="ServiceUrl">
-              https://taskwebapi20240719070204.azurewebsites.net/api/Validation/LookupIdentity</Item>
-            <Item Key="SendClaimsIn">QueryString</Item>
+            <Item Key="ServiceUrl">https://taskwebapi20240719070204.azurewebsites.net/api/Validation/LookupIdentity</Item>
             <Item Key="AuthenticationType">None</Item>
+            <Item Key="SendClaimsIn">QueryString</Item>
             <Item Key="AllowInsecureAuthInProduction">true</Item>
             <Item Key="DebugMode">true</Item>
+            <Item Key="ClaimUsedForRequestPayload">signInName</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="email" />
+            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="email" />
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="ssoExists" PartnerClaimType="exists" />
@@ -161,7 +161,7 @@
         <OrchestrationStep Order="1" Type="CombinedSignInAndSignUp" ContentDefinitionReferenceId="api.signuporsignin">
           <ClaimsProviderSelections>
             <ClaimsProviderSelection TargetClaimsExchangeId="FacebookExchange" />
-            <ClaimsProviderSelection TargetClaimsExchangeId="MicrosoftExchange" />
+            <ClaimsProviderSelection TargetClaimsExchangeId="MicrosoftAccountExchange" />
             <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />
             <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
           </ClaimsProviderSelections>
@@ -180,7 +180,7 @@
           </Preconditions>
           <ClaimsExchanges>
             <ClaimsExchange Id="FacebookExchange" TechnicalProfileReferenceId="Facebook-OAUTH" />
-            <ClaimsExchange Id="MicrosoftExchange" TechnicalProfileReferenceId="Common-AAD" />
+            <ClaimsExchange Id="MicrosoftAccountExchange" TechnicalProfileReferenceId="Common-AAD" />
             <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAUTH" />
             <ClaimsExchange Id="SignUpWithLogonEmailExchange" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonEmail" />
           </ClaimsExchanges>
@@ -259,6 +259,11 @@
               <Value>isActiveMFASession</Value>
               <Action>SkipThisOrchestrationStep</Action>
             </Precondition>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>authenticationSource</Value>
+              <Value>socialIdpAuthentication</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
           </Preconditions>
           <ClaimsExchanges>
             <ClaimsExchange Id="PhoneFactor-Verify" TechnicalProfileReferenceId="PhoneFactor-InputOrVerify" />
@@ -281,6 +286,16 @@
           </ClaimsExchanges>
         </OrchestrationStep>
         <OrchestrationStep Order="9" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>objectId</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
+              <Value>email</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
           <ClaimsExchanges>
             <ClaimsExchange Id="GetMessageClaimsExchange" TechnicalProfileReferenceId="LookupIdentity" />
           </ClaimsExchanges>
@@ -294,7 +309,7 @@
         <OrchestrationStep Order="1" Type="ClaimsProviderSelection" ContentDefinitionReferenceId="api.idpselections">
           <ClaimsProviderSelections>
             <ClaimsProviderSelection TargetClaimsExchangeId="FacebookExchange" />
-            <ClaimsProviderSelection TargetClaimsExchangeId="MicrosoftExchange" />
+            <ClaimsProviderSelection TargetClaimsExchangeId="MicrosoftAccountExchange" />
             <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />
             <ClaimsProviderSelection TargetClaimsExchangeId="LocalAccountSigninEmailExchange" />
           </ClaimsProviderSelections>
@@ -302,7 +317,7 @@
         <OrchestrationStep Order="2" Type="ClaimsExchange">
           <ClaimsExchanges>
             <ClaimsExchange Id="FacebookExchange" TechnicalProfileReferenceId="Facebook-OAUTH" />
-            <ClaimsExchange Id="MicrosoftExchange" TechnicalProfileReferenceId="Common-AAD" />
+            <ClaimsExchange Id="MicrosoftAccountExchange" TechnicalProfileReferenceId="Common-AAD" />
             <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAUTH" />
             <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="SelfAsserted-LocalAccountSignin-Email" />
           </ClaimsExchanges>
@@ -406,7 +421,17 @@
       <Endpoint Id="Token" UserJourneyReferenceId="RedeemRefreshToken" />
     </Endpoints>
     <UserJourneyBehaviors>
+      <!-- The order of elements here are important. They are executed in the order they are. -->
+      <SingleSignOn Scope="Application" KeepAliveInDays="5" EnforceIdTokenHintOnLogout="false"></SingleSignOn>
+      <SessionExpiryType>Rolling</SessionExpiryType>
+      <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
       <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="94aecdf6-c1ee-4181-a970-662cf46e9b81" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
+      <ContentDefinitionParameters>
+        <Parameter Name="campaignId">{OAUTH-KV:campaignId}</Parameter>
+        <Parameter Name="lang">{Culture:LanguageName}</Parameter>
+        <Parameter Name="appId">{OIDC:ClientId}</Parameter>
+      </ContentDefinitionParameters>
+      <ScriptExecution>Allow</ScriptExecution>
     </UserJourneyBehaviors>
     <TechnicalProfile Id="PolicyProfile">
       <DisplayName>PolicyProfile</DisplayName>
@@ -416,12 +441,13 @@
         <OutputClaim ClaimTypeReferenceId="givenName" />
         <OutputClaim ClaimTypeReferenceId="surname" />
         <OutputClaim ClaimTypeReferenceId="email" />
+        <OutputClaim ClaimTypeReferenceId="force"/>
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
         <OutputClaim ClaimTypeReferenceId="identityProvider" />
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
+        <OutputClaim ClaimTypeReferenceId="strongAuthenticationPhoneNumber" />
         <OutputClaim ClaimTypeReferenceId="ssoExists"/>
         <OutputClaim ClaimTypeReferenceId="isOnboarded"/>
-        <OutputClaim ClaimTypeReferenceId="force"/>
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>
