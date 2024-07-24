@@ -27,7 +27,7 @@
       </ClaimType>
       <ClaimType Id="ssoExists">
         <DisplayName>Single Sign-on user exists</DisplayName>
-        <DataType>string</DataType>
+        <DataType>boolean</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="exists" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="exists" />
@@ -36,7 +36,7 @@
       </ClaimType>
       <ClaimType Id="isOnboarded">
         <DisplayName>User has been onboarded to platform</DisplayName>
-        <DataType>string</DataType>
+        <DataType>boolean</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="onboarded" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="onboarded" />
@@ -45,7 +45,7 @@
       </ClaimType>
       <ClaimType Id="force">
         <DisplayName>Force user sign in for SSO</DisplayName>
-        <DataType>string</DataType>
+        <DataType>boolean</DataType>
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="force" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="force" />
@@ -287,10 +287,6 @@
         </OrchestrationStep>
         <OrchestrationStep Order="9" Type="ClaimsExchange">
           <Preconditions>
-            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
-              <Value>objectId</Value>
-              <Action>SkipThisOrchestrationStep</Action>
-            </Precondition>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
               <Value>email</Value>
               <Action>SkipThisOrchestrationStep</Action>
