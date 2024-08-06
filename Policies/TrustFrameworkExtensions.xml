@@ -12,7 +12,7 @@
 
       <!-- This content definition is to render an error page that displays unhandled errors. -->
       <ContentDefinition Id="api.error">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/exception.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/exception.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:globalexception:1.2.1</DataUri>
         <Metadata>
@@ -21,7 +21,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.signuporsignin">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/unified.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/unified.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:unifiedssp:2.1.5</DataUri>
         <Metadata>
@@ -30,7 +30,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.idpselections">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/idpSelector.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/idpSelector.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:providerselection:1.2.1</DataUri>
         <Metadata>
@@ -40,7 +40,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.idpselections.signup">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/idpSelector.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/idpSelector.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:providerselection:1.2.1</DataUri>
         <Metadata>
@@ -50,7 +50,8 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.phonefactor">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/multifactor-1.0.0.html</LoadUri>
+        <LoadUri>
+          https://ssotestsarfk.blob.core.windows.net/pages/multifactor-1.0.0.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:multifactor:1.2.5</DataUri>
         <Metadata>
@@ -59,7 +60,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.selfasserted">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/selfAsserted.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>
@@ -68,7 +69,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.selfasserted.profileupdate">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/selfAsserted.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>
@@ -77,7 +78,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.localaccountsignup">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/selfAsserted.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>
@@ -86,7 +87,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.localaccountpasswordreset">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/selfAsserted.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>
@@ -95,7 +96,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.socialccountsignup">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/selfAsserted.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>
@@ -104,7 +105,7 @@
       </ContentDefinition>
 
       <ContentDefinition Id="api.localaccountsignin">
-        <LoadUri>https://ssotestsarfk.blob.core.windows.net/b2ctemplates/azureblue/selfAsserted.html</LoadUri>
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
         <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>

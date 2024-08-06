@@ -423,9 +423,9 @@
       <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
       <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="94aecdf6-c1ee-4181-a970-662cf46e9b81" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
       <ContentDefinitionParameters>
-        <Parameter Name="campaignId">{OAUTH-KV:campaignId}</Parameter>
         <Parameter Name="lang">{Culture:LanguageName}</Parameter>
-        <Parameter Name="appId">{OIDC:ClientId}</Parameter>
+        <Parameter Name="clientId">{OIDC:ClientId}</Parameter>
+        <Parameter Name="tenant">{Policy:TenantObjectId}</Parameter>
       </ContentDefinitionParameters>
       <ScriptExecution>Allow</ScriptExecution>
     </UserJourneyBehaviors>
