@@ -1,43 +1,356 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
+
+:root,
+[data-bs-theme=light] {
+    /* Sorted */
+    --bs-blue: #0071ff;
+    --bs-blue-true: #00f;
+    --bs-indigo: #520dc2;
+    --bs-purple: #59359a;
+    --bs-pink: #ab296a;
+    --bs-red: #de1f26;
+    --bs-orange: #ca6510;
+    --bs-yellow: #d19f00;
+    --bs-green: #658d1b;
+    --bs-teal: #1aa179;
+    --bs-cyan: #0aa2c0;
+    --bs-black: #000;
+    --bs-white: #fff;
+    --bs-gray: #6c757d;
+    --bs-gray-dark: #343a40;
+    --bs-gray-100: #f8f9fa;
+    --bs-gray-200: #e9ecef;
+    --bs-gray-300: #dee2e6;
+    --bs-gray-400: #ced4da;
+    --bs-gray-500: #adb5bd;
+    --bs-gray-600: #6c757d;
+    --bs-gray-700: #495057;
+    --bs-gray-cement: #6a6a6a;
+    --bs-gray-slate: #605e5c;
+    --bs-gray-800: #343a40;
+    --bs-gray-900: #212529;
+    --bs-primary: #de1f26;
+    --bs-secondary: #475766;
+    --bs-success: #658d1b;
+    --bs-info: #26c3ff;
+    --bs-warning: #f2cd00;
+    --bs-danger: #de1f26;
+    --bs-light: #f8f9fa;
+    --bs-dark: #212529;
+    --bs-red-dark: #a61e0c;
+    --bs-primary-rgb: 222, 31, 38;
+    --bs-secondary-rgb: 71, 87, 102;
+    --bs-success-rgb: 101, 141, 27;
+    --bs-info-rgb: 38, 195, 255;
+    --bs-warning-rgb: 242, 205, 0;
+    --bs-danger-rgb: 222, 31, 38;
+    --bs-light-rgb: 248, 249, 250;
+    --bs-dark-rgb: 33, 37, 41;
+    --bs-black-rgba: rgba(0, 0, 0, 0.5)
+    /* Still need something */
+    --bs-primary-text-emphasis: #052c65;
+    --bs-secondary-text-emphasis: #2b2f32;
+    --bs-success-text-emphasis: #0a3622;
+    --bs-info-text-emphasis: #055160;
+    --bs-warning-text-emphasis: #664d03;
+    --bs-danger-text-emphasis: #58151c;
+    --bs-light-text-emphasis: #495057;
+    --bs-dark-text-emphasis: #495057;
+    --bs-primary-bg-subtle: #cfe2ff;
+    --bs-secondary-bg-subtle: #e2e3e5;
+    --bs-success-bg-subtle: #d1e7dd;
+    --bs-info-bg-subtle: #cff4fc;
+    --bs-warning-bg-subtle: #fff3cd;
+    --bs-danger-bg-subtle: #f8d7da;
+    --bs-light-bg-subtle: #fcfcfd;
+    --bs-dark-bg-subtle: #ced4da;
+    --bs-primary-border-subtle: #9ec5fe;
+    --bs-secondary-border-subtle: #c4c8cb;
+    --bs-success-border-subtle: #a3cfbb;
+    --bs-info-border-subtle: #9eeaf9;
+    --bs-warning-border-subtle: #ffe69c;
+    --bs-danger-border-subtle: #f1aeb5;
+    --bs-light-border-subtle: #e9ecef;
+    --bs-dark-border-subtle: #adb5bd;
+    /* Sorted */
+    --bs-white-rgb: 255, 255, 255;
+    --bs-black-rgb: 0, 0, 0;
+    --bs-font-sans-serif: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --bs-font-monospace: "Source Sans 3", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --bs-font-segoeui: "SegoeUI";
+    /* Still need something */
+    --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 1rem;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.5;
+    --bs-body-color: #212529;
+    --bs-body-color-rgb: 33, 37, 41;
+    --bs-body-bg: #fff;
+    --bs-body-bg-rgb: 255, 255, 255;
+    --bs-emphasis-color: #000;
+    --bs-emphasis-color-rgb: 0, 0, 0;
+    --bs-secondary-color: rgba(33, 37, 41, 0.75);
+    --bs-secondary-color-rgb: 33, 37, 41;
+    --bs-secondary-bg: #e9ecef;
+    --bs-secondary-bg-rgb: 233, 236, 239;
+    --bs-tertiary-color: rgba(33, 37, 41, 0.5);
+    --bs-tertiary-color-rgb: 33, 37, 41;
+    --bs-tertiary-bg: #f8f9fa;
+    --bs-tertiary-bg-rgb: 248, 249, 250;
+    --bs-heading-color: inherit;
+    --bs-link-color: #0d6efd;
+    --bs-link-color-rgb: 13, 110, 253;
+    --bs-link-decoration: underline;
+    --bs-link-hover-color: #0a58ca;
+    --bs-link-hover-color-rgb: 10, 88, 202;
+    --bs-code-color: #d63384;
+    --bs-highlight-color: #212529;
+    --bs-highlight-bg: #fff3cd;
+    --bs-border-width: 1px;
+    --bs-border-style: solid;
+    --bs-border-color: #dee2e6;
+    --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+    --bs-border-radius: 0.375rem;
+    --bs-border-radius-sm: 0.25rem;
+    --bs-border-radius-lg: 0.5rem;
+    --bs-border-radius-xl: 1rem;
+    --bs-border-radius-xxl: 2rem;
+    --bs-border-radius-2xl: var(--bs-border-radius-xxl);
+    --bs-border-radius-pill: 50rem;
+    --bs-box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --bs-box-shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --bs-box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    --bs-box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    --bs-focus-ring-width: 0.25rem;
+    --bs-focus-ring-opacity: 0.25;
+    --bs-focus-ring-color: rgba(13, 110, 253, 0.25);
+    --bs-form-valid-color: #198754;
+    --bs-form-valid-border-color: #198754;
+    --bs-form-invalid-color: #dc3545;
+    --bs-form-invalid-border-color: #dc3545;
+}
+
+/* Still need something */
+[data-bs-theme=dark] {
+    color-scheme: dark;
+    --bs-body-color: #dee2e6;
+    --bs-body-color-rgb: 222, 226, 230;
+    --bs-body-bg: #212529;
+    --bs-body-bg-rgb: 33, 37, 41;
+    --bs-emphasis-color: #fff;
+    --bs-emphasis-color-rgb: 255, 255, 255;
+    --bs-secondary-color: rgba(222, 226, 230, 0.75);
+    --bs-secondary-color-rgb: 222, 226, 230;
+    --bs-secondary-bg: #343a40;
+    --bs-secondary-bg-rgb: 52, 58, 64;
+    --bs-tertiary-color: rgba(222, 226, 230, 0.5);
+    --bs-tertiary-color-rgb: 222, 226, 230;
+    --bs-tertiary-bg: #2b3035;
+    --bs-tertiary-bg-rgb: 43, 48, 53;
+    --bs-primary-text-emphasis: #6ea8fe;
+    --bs-secondary-text-emphasis: #a7acb1;
+    --bs-success-text-emphasis: #75b798;
+    --bs-info-text-emphasis: #6edff6;
+    --bs-warning-text-emphasis: #ffda6a;
+    --bs-danger-text-emphasis: #ea868f;
+    --bs-light-text-emphasis: #f8f9fa;
+    --bs-dark-text-emphasis: #dee2e6;
+    --bs-primary-bg-subtle: #031633;
+    --bs-secondary-bg-subtle: #161719;
+    --bs-success-bg-subtle: #051b11;
+    --bs-info-bg-subtle: #032830;
+    --bs-warning-bg-subtle: #332701;
+    --bs-danger-bg-subtle: #2c0b0e;
+    --bs-light-bg-subtle: #343a40;
+    --bs-dark-bg-subtle: #1a1d20;
+    --bs-primary-border-subtle: #084298;
+    --bs-secondary-border-subtle: #41464b;
+    --bs-success-border-subtle: #0f5132;
+    --bs-info-border-subtle: #087990;
+    --bs-warning-border-subtle: #997404;
+    --bs-danger-border-subtle: #842029;
+    --bs-light-border-subtle: #495057;
+    --bs-dark-border-subtle: #343a40;
+    --bs-heading-color: inherit;
+    --bs-link-color: #6ea8fe;
+    --bs-link-hover-color: #8bb9fe;
+    --bs-link-color-rgb: 110, 168, 254;
+    --bs-link-hover-color-rgb: 139, 185, 254;
+    --bs-code-color: #e685b5;
+    --bs-highlight-color: #dee2e6;
+    --bs-highlight-bg: #664d03;
+    --bs-border-color: #495057;
+    --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+    --bs-form-valid-color: #75b798;
+    --bs-form-valid-border-color: #75b798;
+    --bs-form-invalid-color: #ea868f;
+    --bs-form-invalid-border-color: #ea868f;
+}
+
+.navbar-brand .logo {
+  background-image: url("https://via.placeholder.com/144x51");
+  width: 144px;
+  height: 51px;
+}
+.btn {
+  border-radius: 0;
+}
+
+
+/* Onboarding */
+
+.onboarding {
+  height: 100%;
+  width: 100%;
+}
+
+.onboarding .list-group-item.active {
+  background-color: unset;
+  color: var(--bs-primary);
+}
+
+.onboarding fieldset {
+  display: flex;
+  width: 100%;
+}
+.onboarding jsonforms {
+  width: 100%;
+}
+.onboarding .emphasis {
+  position: relative;
+}
+.onboarding .emphasis::before {
+  position: absolute;
+  left: 0;
+  bottom: -0.25em;
+  height: 100%;
+  width: min(4.25em, 25%);
+  border-bottom: calc(var(--bs-body-font-size, 1rem) * 0.18) solid var(--bs-primary);
+  content: '';
+}
+.onboarding li.list-group-item {
+  border: 0;
+}
+.onboarding li.list-group-item .fa-stack {
+  margin-left: -2em;
+}
+.onboarding li.list-group-item .fa-stack .fa-stack-1x {
+  color: var(--bs-light);
+}
+.onboarding li.list-group-item .fa-stack .fa-check {
+  display: none;
+}
+.onboarding li.list-group-item .fa-stack .fa-counter {
+  display: none;
+}
+.onboarding li.list-group-item .fa-stack .fa-circle {
+  display: none;
+}
+.onboarding li.list-group-item .fa-stack {
+  color: var(--bs-gray-300);
+}
+.onboarding li.list-group-item::before {
+  --width: 0.13em;
+  position: absolute;
+  top: 2.75em;
+  left: calc((var(--width) / 2) + 2.1em);
+  content: "";
+  height: 75%;
+  background-color: var(--bs-gray-300);
+  width: var(--width);
+  z-index: 2;
+}
+.onboarding li.list-group-item.active {
+  background-color: unset;
+}
+.onboarding li.list-group-item.active .fa-stack {
+  color: var(--bs-primary);
+}
+.onboarding li.list-group-item.active .fa-stack .fa-counter {
+  display: block;
+}
+.onboarding li.list-group-item.active .fa-stack .fa-circle-dot {
+  display: none;
+}
+.onboarding li.list-group-item.active .fa-stack .fa-circle {
+  display: block;
+}
+.onboarding li.list-group-item.completed {
+  position: relative;
+}
+.onboarding li.list-group-item.completed::before {
+  color: var(--bs-secondary);
+  background-color: var(--bs-secondary);
+}
+.onboarding li.list-group-item.completed .fa-stack {
+  color: var(--bs-secondary);
+}
+.onboarding li.list-group-item.completed .fa-stack .fa-check {
+  display: block;
+}
+.onboarding li.list-group-item.completed .fa-stack .fa-counter {
+  display: none;
+}
+.onboarding li.list-group-item.completed .fa-stack .fa-circle-dot {
+  display: none;
+}
+.onboarding li.list-group-item.completed .fa-stack .fa-circle {
+  display: block;
+}
+.onboarding li.list-group-item:last-child::before {
+  content: unset;
+}
+.onboarding .step-detail .step-header {
+  min-height: 15%;
+}
+.onboarding .step-detail .step-header .step-number {
+  margin-bottom: 2em;
+  color: var(--bs-primary);
+}
+
+
+/*Single Sign-On Styling*/
 #SignInWithLogonNameExchange,
 #SignUpWithLogonEmailExchange,
 #SignUpWithLogonNameExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/local.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/local.svg);
 }
 
-#SignInWithLogonNameExchange:hover,
-#SignUpWithLogonEmailExchange:hover,
-#SignUpWithLogonNameExchange:hover {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/white/local.svg);
-}
+    #SignInWithLogonNameExchange:hover,
+    #SignUpWithLogonEmailExchange:hover,
+    #SignUpWithLogonNameExchange:hover {
+        background-image: url(https://localhost:5000/b2c_1a_v2/images/white/local.svg);
+    }
 
-#SignUpWithLogonEmailExchange.text-link {
-    background-image: none;
-    background-color: transparent !important;
-}
+    #SignUpWithLogonEmailExchange.text-link {
+        background-image: none;
+        background-color: transparent !important;
+    }
 
-#SignUpWithLogonEmailExchange.text-link:hover {
-    background-image: none;
-    background-color: transparent !important;
-}
-
-/* endinject */
+        #SignUpWithLogonEmailExchange.text-link:hover {
+            background-image: none;
+            background-color: transparent !important;
+        }
 
 .accountButton {
     width: 100px !important;
     display: inline-flex !important;
     min-height: min-content !important;
     background-size: auto !important;
-    background-color: #fff !important;
-    border: 1px solid #000 !important;
+    background-color: var(--bs-white) !important;
+    border: 1px solid var(--bs-black) !important;
     text-align: center !important;
 }
 
-.accountButton:hover {
-    background-color: #605e5c !important;
-}
+    .accountButton:hover {
+        background-color: var(--bs-gray-slate) !important;
+    }
 
 .companyLogo {
-    content: url("https://ssotestsarfk.blob.core.windows.net/styles/images/LightstoneLogo.png");
+    content: url("https://localhost:5000/b2c_1a_v2/images/LightstoneLogo.png");
 }
 
 .signinsignupForm {
@@ -53,7 +366,6 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-
 }
 
 .divider {
@@ -66,114 +378,114 @@
 }
 
 @font-face {
-    font-family: 'SegoeUI';
-    src: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/fonts/segoeui.WOFF);
+    font-family: var(--bs-font-segoeui);
+    src: url(https://localhost:5000/b2c_1a_v2/css/fonts/segoeui.WOFF);
     font-weight: normal;
 }
 
 @font-face {
-    font-family: 'SegoeUI';
-    src: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/fonts/segoeui_bold.WOFF);
+    font-family: var(--bs-font-segoeui);
+    src: url(https://localhost:5000/b2c_1a_v2/css/fonts/segoeui_bold.WOFF);
     font-weight: bold;
 }
 
 #AmazonExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/amazon.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/amazon.svg);
 }
 
-#AmazonExchange:hover {
-    background-color: #000;
-}
+    #AmazonExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #FacebookExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/facebook.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/facebook.svg);
 }
 
-#FacebookExchange:hover {
-    background-color: #000;
-}
+    #FacebookExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #GitHubExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/github.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/github.svg);
 }
 
-#GitHubExchange:hover {
-    background-color: #000;
-}
+    #GitHubExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #AppleExchange,
 #AppleManagedExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/apple.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/apple.svg);
 }
 
-#AppleExchange:hover,
-#AppleManagedExchange:hover {
-    background-color: #000;
-}
+    #AppleExchange:hover,
+    #AppleManagedExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #GoogleExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/google.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/google.svg);
 }
 
-#GoogleExchange:hover {
-    background-color: #000;
-}
+    #GoogleExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #LinkedInExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/linkedin.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/linkedin.svg);
 }
 
-#LinkedInExchange:hover {
-    background-color: #000;
-}
+    #LinkedInExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #MicrosoftAccountExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/microsoft.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/microsoft.svg);
 }
 
-#MicrosoftAccountExchange:hover {
-    background-color: #000;
-}
+    #MicrosoftAccountExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #QQExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/qq.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/qq.svg);
 }
 
-#QQExchange:hover {
-    background-color: #000;
-}
+    #QQExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #TwitterExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/twitter.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/twitter.svg);
 }
 
-#TwitterExchange:hover {
-    background-color: #000;
-}
+    #TwitterExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #WeChatExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/wechat.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/wechat.svg);
 }
 
-#WeChatExchange:hover {
-    background-color: #000;
-}
+    #WeChatExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #WeiboExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/weibo.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/weibo.svg);
 }
 
-#WeiboExchange:hover {
-    background-color: #000;
-}
+    #WeiboExchange:hover {
+        background-color: var(--bs-black);
+    }
 
 #OktaExchange {
-    background-image: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/idp_logos/colored/okta.svg);
+    background-image: url(https://localhost:5000/b2c_1a_v2/images/colored/okta.svg);
 }
 
-#OktaExchange:hover {
-    background-color: #fff;
-}
+    #OktaExchange:hover {
+        background-color: var(--bs-white);
+    }
 
 .buttons #cancel:before {
     content: url(https://ssotestsarfk.blob.core.windows.net/b2ctemplates/src/images/left-arrow.svg);
@@ -188,7 +500,7 @@ html {
 body {
     font-family: Segoe UI, SegoeUI, "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-attachment: fixed;
-    background-color: #fff;
+    background-color: var(--bs-white);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -206,13 +518,13 @@ a:focus {
 
 input,
 select {
-    border: 1px solid #605e5c
+    border: 1px solid var(--bs-gray-slate)
 }
 
-input::placeholder {
-    color: #6a6a6a;
-    opacity: 1
-}
+    input::placeholder {
+        color: var(--bs-gray-cement);
+        opacity: 1
+    }
 
 img[data-tenant-branding-background=true] {
     width: 100%;
@@ -270,7 +582,7 @@ ul {
 #simplemodal-container .simplemodal-data {
     padding: 5px 8px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: var(--bs-white);
     border-radius: 3px;
     font-style: italic
 }
@@ -281,7 +593,7 @@ ul {
 #SignInWithLogonNameExchange,
 #SignUpWithLogonEmailExchange,
 #SignUpWithLogonNameExchange {
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     background-image: url(none);
     background-size: 10%;
     background-position-x: 95%;
@@ -294,41 +606,41 @@ ul {
     margin-left: auto
 }
 
-#LocalAccountSigninEmailExchange:hover,
-#LocalAccountSigninUsernameExchange:hover,
-#SignInWithLogonEmailExchange:hover,
-#SignInWithLogonNameExchange:hover,
-#SignUpWithLogonEmailExchange:hover,
-#SignUpWithLogonNameExchange:hover {
-    background-color: #F2CD00 !important
-}
+    #LocalAccountSigninEmailExchange:hover,
+    #LocalAccountSigninUsernameExchange:hover,
+    #SignInWithLogonEmailExchange:hover,
+    #SignInWithLogonNameExchange:hover,
+    #SignUpWithLogonEmailExchange:hover,
+    #SignUpWithLogonNameExchange:hover {
+        background-color: var(--bs-warning) !important
+    }
 
 .buttons button {
     margin: 0 auto;
     width: 60%;
     height: 50px;
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     border-radius: .5rem;
     border: none;
-    color: #F2CD00;
+    color: var(--bs-warning);
     font-size: 1em;
     margin-top: 10px;
     font-weight: bold;
 }
 
-.buttons button:hover {
-    background-color: #F2CD00;
-    border-color: #F2CD00;
-    color: #fff;
-}
+    .buttons button:hover {
+        background-color: var(--bs-warning);
+        border-color: var(--bs-warning);
+        color: var(--bs-white);
+    }
 
-.buttons button[aria-disabled=true] {
-    opacity: .3
-}
+    .buttons button[aria-disabled=true] {
+        opacity: .3
+    }
 
-.buttons button:not([aria-disabled=true]) {
-    opacity: 1
-}
+    .buttons button:not([aria-disabled=true]) {
+        opacity: 1
+    }
 
 .buttons #cancel {
     padding: 0;
@@ -341,30 +653,30 @@ ul {
     top: 2px;
     left: 15px;
     font-size: 1em;
-    color: #505050;
+    color: var(--bs-gray-700);
     box-shadow: none;
     text-align: left
 }
 
-.buttons #cancel:hover {
-    color: #000 !important
-}
+    .buttons #cancel:hover {
+        color: var(--bs-black) !important
+    }
 
-.buttons #cancel:before {
-    padding: 10px;
-    vertical-align: sub;
-    zoom: 90%;
-    display: inline-block
-}
+    .buttons #cancel:before {
+        padding: 10px;
+        vertical-align: sub;
+        zoom: 90%;
+        display: inline-block
+    }
 
 #attributeList ul {
     padding: 0
 }
 
-#attributeList ul li {
-    list-style: none;
-    margin: 1rem 0
-}
+    #attributeList ul li {
+        list-style: none;
+        margin: 1rem 0
+    }
 
 label {
     font-weight: 600
@@ -409,13 +721,13 @@ label {
     text-indent: 20px
 }
 
-#attributeList ul li input::-webkit-input-placeholder {
-    text-indent: 20px
-}
+    #attributeList ul li input::-webkit-input-placeholder {
+        text-indent: 20px
+    }
 
 #attributeList ul li .attrEntry.validate input.invalid,
 #attributeList ul li .attrEntry.validate input:invalid {
-    border: 1px solid #b00
+    border: 1px solid var(--bs-red)
 }
 
 #attributeList ul li .attrEntry .verify {
@@ -433,50 +745,50 @@ label {
 #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_send] {
     width: 100%;
     height: 50px;
-    background-color: #fff;
-    color: #F2CD00;
-    border: 2px solid #F2CD00;
+    background-color: var(--bs-white);
+    color: var(--bs-warning);
+    border: 2px solid var(--bs-warning);
     border-radius: .5rem
 }
 
 #attributeList ul li .attrEntry .verificationControlContent .sendCode {
     width: 100%;
     height: 50px;
-    background-color: #fff;
-    color: #f2cd00;
-    border: 2px solid #F2CD00;
+    background-color: var(--bs-white);
+    color: var(--bs-warning);
+    border: 2px solid var(--bs-warning);
     border-radius: .5rem
 }
 
 #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_send]:hover {
-    background-color: #F2CD00;
-    color: #fff;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
 }
 
 #attributeList ul li .attrEntry .verificationControlContent .sendCode:hover {
-    background-color: #F2CD00;
-    color: #fff;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
 }
 
 @media screen and (-ms-high-contrast:active) {
 
     #attributeList ul li .attrEntry .verify button,
     .buttons #continue {
-        border: 1px dashed #fff !important
+        border: 1px dashed var(--bs-white) !important
     }
 
-    #attributeList ul li .attrEntry .verify button:hover,
-    .buttons #continue:hover {
-        border: 1px solid #fff !important
-    }
+        #attributeList ul li .attrEntry .verify button:hover,
+        .buttons #continue:hover {
+            border: 1px solid var(--bs-white) !important
+        }
 }
 
 #attributeList ul li .attrEntry .verify .verifyButton {
     width: inherit;
     padding: 0 20px;
     height: 50px;
-    background-color: #F2CD00;
-    color: #fff;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
     margin-right: 5px;
     border-radius: .5rem
 }
@@ -485,18 +797,18 @@ label {
     width: inherit;
     padding: 0 20px;
     height: 50px;
-    background-color: #F2CD00;
-    color: #fff;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
     margin-right: 5px;
     border-radius: .5rem
 }
 
 #attributeList ul li .attrEntry .verify .verifyButton:hover {
-    background-color: #F2CD00
+    background-color: var(--bs-warning)
 }
 
 #attributeList ul li .attrEntry .verificationControlContent .verifyCode:hover {
-    background-color: #F2CD00
+    background-color: var(--bs-warning)
 }
 
 #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_resend] {
@@ -507,8 +819,8 @@ label {
     height: 50px;
     right: 0;
     bottom: -38px;
-    background-color: #F2CD00;
-    color: #fff;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
     border-radius: .5rem
 }
 
@@ -520,23 +832,23 @@ label {
     height: 50px;
     right: 0;
     bottom: -38px;
-    background-color: #F2CD00;
-    color: #fff;
+    background-color: var(--bs-warning);
+    color: var(--bs-white);
     border-radius: .5rem
 }
 
 #attributeList ul li .attrEntry .verify .sendButton[id$=ver_but_resend]:hover {
-    background-color: #F2CD00
+    background-color: var(--bs-warning)
 }
 
 #attributeList ul li .attrEntry .verificationControlContent .sendNewCode:hover {
-    background-color: #F2CD00
+    background-color: var(--bs-warning)
 }
 
 #attributeList ul li .attrEntry .verify .editButton {
     border: none;
-    color: #fff;
-    background-color: #F2CD00;
+    color: var(--bs-white);
+    background-color: var(--bs-warning);
     width: 60%;
     height: 50px;
     border-radius: .5rem
@@ -544,19 +856,19 @@ label {
 
 #attributeList ul li .attrEntry .verificationControlContent .changeClaims {
     border: none;
-    color: #fff;
-    background-color: #F2CD00;
+    color: var(--bs-white);
+    background-color: var(--bs-warning);
     width: 60%;
     height: 50px;
     border-radius: .5rem
 }
 
 #attributeList ul li .attrEntry .verify .editButton:hover {
-    background-color: #F2CD00
+    background-color: var(--bs-warning)
 }
 
 #attributeList ul li .attrEntry .verificationControlContent .changeClaims:hover {
-    background-color: #F2CD00
+    background-color: var(--bs-warning)
 }
 
 #attributeList ul li .attrEntry .verify #email_ver_input_label {
@@ -577,6 +889,7 @@ label {
 input[type=email],
 input[type=password],
 input[type=text] {
+    appearance: none;
     -webkit-appearance: none
 }
 
@@ -592,12 +905,12 @@ input[type=text] {
     width: 100%
 }
 
-#attributeList ul li .attrEntry div#cpiminternal_dateOfBirth.date select {
-    border-radius: .5rem;
-    display: inline-block;
-    height: 50px;
-    padding-left: 15px
-}
+    #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth.date select {
+        border-radius: .5rem;
+        display: inline-block;
+        height: 50px;
+        padding-left: 15px
+    }
 
 #attributeList ul li .attrEntry div#cpiminternal_dateOfBirth select#cpiminternal_dateOfBirth_day.day {
     margin-right: 3%;
@@ -626,33 +939,33 @@ input[type=text] {
         margin-top: 40px
     }
 
-    .row .panel-default .panel-body .branding img {
-        display: inline-table;
-        height: 80px;
-        width: auto;
-        margin: 0 auto
-    }
+        .row .panel-default .panel-body .branding img {
+            display: inline-table;
+            height: 80px;
+            width: auto;
+            margin: 0 auto
+        }
 
-    .row .panel-default .panel-body .branding h1 {
-        display: none
-    }
+        .row .panel-default .panel-body .branding h1 {
+            display: none
+        }
 
-    .row .panel-default .panel-body h3 {
-        font-size: 1.5em;
-        margin-top: 15px
-    }
+        .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            margin-top: 15px
+        }
 
     #attributeVerification #attributeList ul li input {
         width: 100%;
         height: 50px;
         border-radius: 1em;
-        border: 1px solid #605e5c;
+        border: 1px solid var(--bs-gray-slate);
         text-indent: 10px
     }
 
-    #attributeVerification #attributeList ul li input::-webkit-input-placeholder {
-        text-indent: 10px
-    }
+        #attributeVerification #attributeList ul li input::-webkit-input-placeholder {
+            text-indent: 10px
+        }
 
     #attributeVerification #attributeList ul li #email {
         width: 100%;
@@ -664,7 +977,7 @@ input[type=text] {
     #attributeVerification #attributeList ul li #email_ver_but_verify {
         background: 0 0;
         border: 0;
-        color: #496ad8;
+        color: var(--bs-blue);
         font-size: 1em;
         position: relative;
         right: 0;
@@ -709,11 +1022,11 @@ input[type=text] {
     #attributeVerification #attributeList ul li .attrEntry .verify #email_ver_but_edit {
         margin-bottom: 15px;
         border: none;
-        color: #fff;
-        background-color: #496ad8;
+        color: var(--bs-white);
+        background-color: var(--bs-blue);
         border-radius: .5rem;
         font-size: 1em;
-        box-shadow: 0 0 40px 2px #dae1f7;
+        box-shadow: 0 0 40px 2px var(--bs-light);
         width: 30%;
         height: 40px;
         overflow: hidden;
@@ -755,14 +1068,14 @@ html {
     }
 
     .container {
-        background-color: #fff
+        background-color: var(--bs-white)
     }
 
-    .container .row .panel-default {
-        border-radius: 0;
-        border: none;
-        box-shadow: none
-    }
+        .container .row .panel-default {
+            border-radius: 0;
+            border: none;
+            box-shadow: none
+        }
 }
 
 /* endinject */
@@ -774,119 +1087,119 @@ html {
     margin-top: auto;
     margin-bottom: auto;
     height: 100%;
-    background-color: #fff
+    background-color: var(--bs-white)
 }
 
-.unified_container .row .panel-default .panel-body {
-    max-width: 380px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0
-}
+    .unified_container .row .panel-default .panel-body {
+        max-width: 380px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0
+    }
 
-.unified_container .row .panel-default .panel-body .companyName {
-    font-size: 1.5em;
-    margin-bottom: 45px
-}
+        .unified_container .row .panel-default .panel-body .companyName {
+            font-size: 1.5em;
+            margin-bottom: 45px
+        }
 
-.unified_container .row .panel-default .panel-body .companyLogo {
-    display: block
-}
+        .unified_container .row .panel-default .panel-body .companyLogo {
+            display: block
+        }
 
-.unified_container .row .panel-default .panel-body img {
-    max-width: 100%;
-    width: auto;
-    height: 70px;
-    margin: 0 auto;
-    display: block
-}
+        .unified_container .row .panel-default .panel-body img {
+            max-width: 100%;
+            width: auto;
+            height: 70px;
+            margin: 0 auto;
+            display: block
+        }
 
-.unified_container .row .panel-default .panel-body h3 {
-    font-size: 1.5em;
-    display: none
-}
+        .unified_container .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            display: none
+        }
 
-.unified_container .row .panel-default #api {
-    display: table;
-    margin: 0;
-    width: 100%
-}
+    .unified_container .row .panel-default #api {
+        display: table;
+        margin: 0;
+        width: 100%
+    }
 
-.unified_container .row .panel-default #api .intro {
-    display: inline-block !important;
-    text-align: center !important;
-    margin-top: 0px !important;
-}
+        .unified_container .row .panel-default #api .intro {
+            display: inline-block !important;
+            text-align: center !important;
+            margin-top: 0px !important;
+        }
 
-.unified_container .row .panel-default #api .intro h2 {
-    font-size: 20px
-}
+            .unified_container .row .panel-default #api .intro h2 {
+                font-size: 20px
+            }
 
-.unified_container .row .panel-default #api .divider {
-    display: none
-}
+        .unified_container .row .panel-default #api .divider {
+            display: none
+        }
 
-.unified_container .row .panel-default #api .localAccount {
-    top: 10px;
-    width: 100%
-}
+        .unified_container .row .panel-default #api .localAccount {
+            top: 10px;
+            width: 100%
+        }
 
-.unified_container .row .panel-default #api .localAccount .intro h2 {
-    font-size: 20px
-}
+            .unified_container .row .panel-default #api .localAccount .intro h2 {
+                font-size: 20px
+            }
 
-.unified_container .row .panel-default #api .localAccount .error {
-    color: #b00;
-    text-align: left
-}
+            .unified_container .row .panel-default #api .localAccount .error {
+                color: var(--bs-red);
+                text-align: left
+            }
 
-.unified_container .row .panel-default #api .localAccount .entry .buttons {
-    margin: 0 0 23px 0;
-    text-align: left
-}
+            .unified_container .row .panel-default #api .localAccount .entry .buttons {
+                margin: 0 0 23px 0;
+                text-align: left
+            }
 
-.unified_container .row .panel-default #api .localAccount .entry .buttons button {
-    background-image: none;
-    background-color: #fff;
-    border: #F2CD00 3px solid;
-    /* border-radius: .5rem; */
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1em;
-    font-weight: bold;
-    height: inherit;
-    line-height: 1.3333333;
-    margin-top: 2rem;
-    margin-right: 0;
-    margin-bottom: 1.2rem;
-    margin-left: 0;
-    padding: 10px 16px;
-    text-align: center;
-    touch-action: manipulation;
-    user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: inherit;
-    -moz-user-select: none;
-    -ms-touch-action: manipulation;
-    -ms-user-select: none;
-    -webkit-user-select: none;
-    color: #F2CD00;
-    width: 100%;
-    /* box-shadow: 0 0 10px 0 #F2CD00 */
-}
+                .unified_container .row .panel-default #api .localAccount .entry .buttons button {
+                    background-image: none;
+                    background-color: var(--bs-white);
+                    border: var(--bs-warning) 3px solid;
+                    /* border-radius: .5rem; */
+                    cursor: pointer;
+                    display: inline-block;
+                    font-size: 1em;
+                    font-weight: bold;
+                    height: inherit;
+                    line-height: 1.3333333;
+                    margin-top: 2rem;
+                    margin-right: 0;
+                    margin-bottom: 1.2rem;
+                    margin-left: 0;
+                    padding: 10px 16px;
+                    text-align: center;
+                    touch-action: manipulation;
+                    user-select: none;
+                    vertical-align: middle;
+                    white-space: nowrap;
+                    width: inherit;
+                    -moz-user-select: none;
+                    -ms-touch-action: manipulation;
+                    -ms-user-select: none;
+                    -webkit-user-select: none;
+                    color: var(--bs-warning);
+                    width: 100%;
+                    /* box-shadow: 0 0 10px 0 var(--bs-warning) */
+                }
 
 @media screen and (-ms-high-contrast:active) {
 
     .unified_container .row .panel-default #api .accountButton,
     .unified_container .row .panel-default #api .localAccount .entry .buttons button {
-        border: 1px dashed #fff
+        border: 1px dashed var(--bs-white)
     }
 
-    .unified_container .row .panel-default #api .accountButton:hover,
-    .unified_container .row .panel-default #api .localAccount .entry .buttons button:hover {
-        border: 1px solid #fff
-    }
+        .unified_container .row .panel-default #api .accountButton:hover,
+        .unified_container .row .panel-default #api .localAccount .entry .buttons button:hover {
+            border: 1px solid var(--bs-white)
+        }
 }
 
 .unified_container .row .panel-default #api .localAccount .entry .buttons button:focus,
@@ -894,9 +1207,9 @@ html {
     -moz-box-shadow: none;
     -webkit-box-shadow: none;
     box-shadow: none;
-    background-color: #F2CD00;
-    border: #F2CD00 3px solid;
-    color: #fff
+    background-color: var(--bs-warning);
+    border: var(--bs-warning) 3px solid;
+    color: var(--bs-white)
 }
 
 .unified_container .row .panel-default #api .localAccount .entry .entry-item {
@@ -907,54 +1220,54 @@ html {
     display: block
 }
 
-.unified_container .row .panel-default #api .localAccount .entry .entry-item label {
-    display: none
-}
+    .unified_container .row .panel-default #api .localAccount .entry .entry-item label {
+        display: none
+    }
 
-.unified_container .row .panel-default #api .localAccount .entry .entry-item input:focus {
-    border: 2px solid #000;
-    border-radius: 1em;
-}
+    .unified_container .row .panel-default #api .localAccount .entry .entry-item input:focus {
+        border: 2px solid var(--bs-black);
+        border-radius: 1em;
+    }
 
-.unified_container .row .panel-default #api .localAccount .entry .entry-item input {
-    outline: 0;
-    background-color: #fff !important;
-    background-image: none !important;
-    border-radius: 1em !important;
-    color: #555;
-    display: inline-block;
-    font-size: 1em;
-    height: 50px;
-    line-height: 1.42857143;
-    padding: 6px 20px;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
-    width: 100% !important;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s !important
-}
+    .unified_container .row .panel-default #api .localAccount .entry .entry-item input {
+        outline: 0;
+        background-color: var(--bs-white) !important;
+        background-image: none !important;
+        border-radius: 1em !important;
+        color: var(--bs-gray-700);
+        display: inline-block;
+        font-size: 1em;
+        height: 50px;
+        line-height: 1.42857143;
+        padding: 6px 20px;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
+        width: 100% !important;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s !important;
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s !important
+    }
 
-.unified_container .row .panel-default #api .localAccount .entry .entry-item #password {
-    margin-bottom: 20px
-}
+    .unified_container .row .panel-default #api .localAccount .entry .entry-item #password {
+        margin-bottom: 20px
+    }
 
-.unified_container .row .panel-default #api .localAccount .entry .entry-item .password-label {
-    text-align: left;
-    height: 0;
-    left: 0;
-    width: 100%
-}
+    .unified_container .row .panel-default #api .localAccount .entry .entry-item .password-label {
+        text-align: left;
+        height: 0;
+        left: 0;
+        width: 100%
+    }
 
 .forgot-password {
     text-align: left
 }
 
-.forgot-password.center-height {
-    position: absolute;
-    bottom: 0;
-    clear: right;
-    cursor: pointer;
-    text-align: right
-}
+    .forgot-password.center-height {
+        position: absolute;
+        bottom: 0;
+        clear: right;
+        cursor: pointer;
+        text-align: right
+    }
 
 @keyframes slideInFromRight {
     0% {
@@ -984,12 +1297,12 @@ html {
     width: 15rem
 }
 
-.unified_container .row .panel-default #api .localAccount .rememberMe.align-to-left {
-    margin-top: .5rem;
-    text-align: left;
-    margin-left: 0;
-    width: 100%
-}
+    .unified_container .row .panel-default #api .localAccount .rememberMe.align-to-left {
+        margin-top: .5rem;
+        text-align: left;
+        margin-left: 0;
+        width: 100%
+    }
 
 .working {
     display: none
@@ -1042,18 +1355,18 @@ html {
     margin-left: auto;
     overflow: hidden;
     max-width: 380px;
-    border: 1px solid #f2cd00;
-    background-color: #fff;
+    border: 1px solid var(--bs-warning);
+    background-color: var(--bs-white);
     -moz-border-radius: 3em;
     -webkit-border-radius: 3em;
     border-radius: 3em;
     margin-top: 10px
 }
 
-.unified_container .row .panel-default #api .accountButton:hover {
-    color: #fff;
-    background-color: #000;
-}
+    .unified_container .row .panel-default #api .accountButton:hover {
+        color: var(--bs-white);
+        background-color: var(--bs-black);
+    }
 
 .claims-provider-list-text-links-bottom-under-form {
     text-align: left
@@ -1066,91 +1379,91 @@ html {
         height: 550px
     }
 
-    .unified_container .row .panel-default .panel-body {
-        padding: 5rem 3rem;
-        margin-top: 20px
-    }
+        .unified_container .row .panel-default .panel-body {
+            padding: 5rem 3rem;
+            margin-top: 20px
+        }
 
-    .unified_container .row .panel-default .panel-body .companyName {
-        display: none
-    }
+            .unified_container .row .panel-default .panel-body .companyName {
+                display: none
+            }
 
-    .unified_container .row .panel-default .panel-body .companyLogo {
-        display: block
-    }
+            .unified_container .row .panel-default .panel-body .companyLogo {
+                display: block
+            }
 
-    .unified_container .row .panel-default .panel-body h3 {
-        display: block
-    }
+            .unified_container .row .panel-default .panel-body h3 {
+                display: block
+            }
 
-    .unified_container .row .panel-default .panel-body #api {
-        width: 100%;
-    }
+            .unified_container .row .panel-default .panel-body #api {
+                width: 100%;
+            }
 
-    .unified_container .row .panel-default .panel-body #api .social {
-        top: 370px;
-        width: 100%;
-    }
+                .unified_container .row .panel-default .panel-body #api .social {
+                    top: 370px;
+                    width: 100%;
+                }
 
-    .unified_container .row .panel-default .panel-body #api .social .options .accountButton {
-        height: 40px
-    }
+                    .unified_container .row .panel-default .panel-body #api .social .options .accountButton {
+                        height: 40px
+                    }
 
-    .unified_container .row .panel-default .panel-body #api .social .options #FacebookExchange {
-        background-size: 12px;
-        background-position: 50% 75%;
-        margin-bottom: 10px
-    }
+                    .unified_container .row .panel-default .panel-body #api .social .options #FacebookExchange {
+                        background-size: 12px;
+                        background-position: 50% 75%;
+                        margin-bottom: 10px
+                    }
 
-    .unified_container .row .panel-default .panel-body #api .social .options #GoogleExchange {
-        background-size: 20px;
-        background-position: 50% 75%;
-        margin-bottom: 10px
-    }
+                    .unified_container .row .panel-default .panel-body #api .social .options #GoogleExchange {
+                        background-size: 20px;
+                        background-position: 50% 75%;
+                        margin-bottom: 10px
+                    }
 
-    .unified_container .row .panel-default .panel-body #api .social .options #TwitterExchange {
-        background-size: 20px;
-        background-position-x: 56px;
-        background-position-y: 14px;
-        margin-bottom: 10px
-    }
+                    .unified_container .row .panel-default .panel-body #api .social .options #TwitterExchange {
+                        background-size: 20px;
+                        background-position-x: 56px;
+                        background-position-y: 14px;
+                        margin-bottom: 10px
+                    }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount {
-        top: 20px
-    }
+                .unified_container .row .panel-default .panel-body #api .localAccount {
+                    top: 20px
+                }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item {
-        display: block;
-        width: 100%;
-        margin-bottom: 10px
-    }
+                    .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item {
+                        display: block;
+                        width: 100%;
+                        margin-bottom: 10px
+                    }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item .password-label {
-        top: 145px
-    }
+                        .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item .password-label {
+                            top: 145px
+                        }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item #logonIdentifier {
-        height: 40px
-    }
+                        .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item #logonIdentifier {
+                            height: 40px
+                        }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item #password {
-        height: 40px
-    }
+                        .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item #password {
+                            height: 40px
+                        }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item:nth-child(2) {
-        width: auto;
-        float: left
-    }
+                        .unified_container .row .panel-default .panel-body #api .localAccount .entry .entry-item:nth-child(2) {
+                            width: auto;
+                            float: left
+                        }
 
-    .unified_container .row .panel-default .panel-body #api .localAccount .entry .buttons #next {
-        width: 100%;
-        text-indent: -4px;
-        height: 40px;
-        line-height: 0;
-        position: relative;
-        bottom: 5px;
-        left: 8px
-    }
+                    .unified_container .row .panel-default .panel-body #api .localAccount .entry .buttons #next {
+                        width: 100%;
+                        text-indent: -4px;
+                        height: 40px;
+                        line-height: 0;
+                        position: relative;
+                        bottom: 5px;
+                        left: 8px
+                    }
 }
 
 @media screen and (max-width:320px) {
@@ -1173,30 +1486,30 @@ html {
 }
 
 .sendButton .verifyButton .editButton {
-    background-color: #fff !important;
-    color: #f2cd00 !important;
-    border: 2px solid #F2CD00 !important;
+    background-color: var(--bs-white) !important;
+    color: var(--bs-warning) !important;
+    border: 2px solid var(--bs-warning) !important;
     border-radius: .5rem;
     width: 100% !important;
     font-size: 1em;
 }
 
 #continue {
-    background-color: #fff;
-    border: 2px solid #F2CD00;
+    background-color: var(--bs-white);
+    border: 2px solid var(--bs-warning);
     border-radius: .5rem;
     width: 100%;
     font-size: 1em;
-    color: #f2cd00;
+    color: var(--bs-warning);
     margin-top: 10px;
     height: 50px;
 }
 
-#continue:hover {
-    background-color: #f2cd00;
-    border: 2px solid #F2CD00;
-    color: #fff;
-}
+    #continue:hover {
+        background-color: var(--bs-warning);
+        border: 2px solid var(--bs-warning);
+        color: var(--bs-white);
+    }
 
 /* Following are generated styles via gulp. */
 /* inject: css */
@@ -1207,7 +1520,7 @@ html {
 #SignInWithLogonNameExchange,
 #SignUpWithLogonEmailExchange,
 #SignUpWithLogonNameExchange {
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     background-image: url(none);
     background-size: 10%;
     background-position-x: 95%;
@@ -1224,10 +1537,10 @@ html {
     margin: 0 auto;
     width: 60%;
     height: 50px;
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     border-radius: .5rem;
     border: none;
-    color: #fff;
+    color: var(--bs-white);
     font-size: 1em;
     margin-top: 10px
 }
@@ -1237,21 +1550,21 @@ html {
         margin-top: 40px
     }
 
-    .row .panel-default .panel-body .branding img {
-        display: block;
-        height: 80px;
-        width: auto;
-        margin: 0 auto
-    }
+        .row .panel-default .panel-body .branding img {
+            display: block;
+            height: 80px;
+            width: auto;
+            margin: 0 auto
+        }
 
-    .row .panel-default .panel-body .branding h1 {
-        display: none
-    }
+        .row .panel-default .panel-body .branding h1 {
+            display: none
+        }
 
-    .row .panel-default .panel-body h3 {
-        font-size: 1.5em;
-        margin-top: 15px
-    }
+        .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            margin-top: 15px
+        }
 }
 
 /* endinject */
@@ -1262,56 +1575,56 @@ html {
     padding: 40px 30px;
     margin: auto;
     height: 100%;
-    background-color: #fff
+    background-color: var(--bs-white)
 }
 
-.self_asserted_container .row .panel-default .panel-body {
-    margin: 0 auto;
-    max-width: 380px;
-    width: auto;
-    padding: 0
-}
+    .self_asserted_container .row .panel-default .panel-body {
+        margin: 0 auto;
+        max-width: 380px;
+        width: auto;
+        padding: 0
+    }
 
-.self_asserted_container .row .panel-default .panel-body img.companyLogo {
-    display: block;
-    margin: auto;
-    height: 70px
-}
+        .self_asserted_container .row .panel-default .panel-body img.companyLogo {
+            display: block;
+            margin: auto;
+            height: 70px
+        }
 
-.self_asserted_container .row .panel-default .panel-body .branding h1 {
-    font-size: 1.5em;
-    color: #505050
-}
+        .self_asserted_container .row .panel-default .panel-body .branding h1 {
+            font-size: 1.5em;
+            color: var(--bs-gray-700);
+        }
 
-.self_asserted_container .row .panel-default .panel-body h3 {
-    font-size: 1.5em;
-    color: #505050;
-    margin-top: 5px;
-    margin-bottom: 30px
-}
+        .self_asserted_container .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            color: var(--bs-gray-700);
+            margin-top: 5px;
+            margin-bottom: 30px
+        }
 
-.self_asserted_container .row .panel-default .panel-body .intro {
-    display: none;
-    text-align: left;
-    margin-top: 2rem
-}
+        .self_asserted_container .row .panel-default .panel-body .intro {
+            display: none;
+            text-align: left;
+            margin-top: 2rem
+        }
 
-.self_asserted_container .row .panel-default .panel-body #api #attributeVerification .pageLevel {
-    color: #b00;
-    text-align: left
-}
+        .self_asserted_container .row .panel-default .panel-body #api #attributeVerification .pageLevel {
+            color: var(--bs-red);
+            text-align: left
+        }
 
-.self_asserted_container .row .panel-default .panel-body #api #attributeVerification .error {
-    color: #b00;
-    text-align: left;
-    margin-bottom: 5px
-}
+        .self_asserted_container .row .panel-default .panel-body #api #attributeVerification .error {
+            color: var(--bs-red);
+            text-align: left;
+            margin-bottom: 5px
+        }
 
 .errorText {
     border: none;
     padding: 0;
     background: 0 0;
-    color: #a61e0c
+    color: var(--bs-red-dark);
 }
 
 .self_asserted_container .row .panel-default .panel-body #api .verifying-modal {
@@ -1324,40 +1637,40 @@ html {
     flex-direction: column
 }
 
-#attributeVerification #attributeList ul li input {
-    width: 100%
-}
+    #attributeVerification #attributeList ul li input {
+        width: 100%
+    }
 
-#attributeVerification #attributeList ul li input:invalid {
-    outline: unset
-}
+        #attributeVerification #attributeList ul li input:invalid {
+            outline: unset
+        }
 
-#attributeVerification #attributeList ul li .helpText {
-    display: none;
-    color: #a61e0c;
-    text-align: justify
-}
+    #attributeVerification #attributeList ul li .helpText {
+        display: none;
+        color: var(--bs-red-dark);
+        text-align: justify
+    }
 
-#attributeVerification #attributeList ul li #email_success.verificationSuccessText {
-    float: left
-}
+    #attributeVerification #attributeList ul li #email_success.verificationSuccessText {
+        float: left
+    }
 
-#attributeVerification #attributeList ul li #email_info {
-    float: left
-}
+    #attributeVerification #attributeList ul li #email_info {
+        float: left
+    }
 
-#attributeVerification #attributeList ul li .attrEntry.validate #email_fail_retry {
-    float: left
-}
+    #attributeVerification #attributeList ul li .attrEntry.validate #email_fail_retry {
+        float: left
+    }
 
-#attributeVerification #attributeList ul li .attrEntry.validate #email_fail_server {
-    float: left;
-    text-align: left
-}
+    #attributeVerification #attributeList ul li .attrEntry.validate #email_fail_server {
+        float: left;
+        text-align: left
+    }
 
-#attributeVerification #attributeList ul li #email_fail_no_retry {
-    float: left
-}
+    #attributeVerification #attributeList ul li #email_fail_no_retry {
+        float: left
+    }
 
 div#email_intro {
     width: 100%;
@@ -1380,11 +1693,11 @@ div#email_info {
     margin: .5rem
 }
 
-#attributeVerification #attributeList ul li input[type=checkbox].invalid {
-    border: none
-}
+    #attributeVerification #attributeList ul li input[type=checkbox].invalid {
+        border: none
+    }
 
-#attributeList ul li input[type=checkbox]+label {
+#attributeList ul li input[type=checkbox] + label {
     float: left;
     display: inline-block !important;
     margin: .8rem 0 0 .8rem;
@@ -1412,7 +1725,7 @@ div#email_info {
 }
 
 #attributeVerification #attributeList ul li input[type=checkbox]:focus {
-    box-shadow: 0 0 0 2px #000;
+    box-shadow: 0 0 0 2px var(--bs-black);
     border-radius: .2rem
 }
 
@@ -1423,12 +1736,12 @@ div#email_info {
     z-index: 1;
     width: 24px;
     height: 24px;
-    border: 1px solid #605e5c;
+    border: 1px solid var(--bs-gray-slate);
     border-radius: 2px
 }
 
 #attributeList ul li input[type=checkbox]:before {
-    background: #00f;
+    background: var(--bs-blue-true);
     background-size: 10px 8px;
     background-repeat: no-repeat;
     background-position: 3px 4px;
@@ -1438,7 +1751,7 @@ div#email_info {
     opacity: 0;
     width: 100%;
     height: 100%;
-    color: #f6ac4f
+    color: var(--bs-warning-border-subtle)
 }
 
 #attributeList ul li input[type=checkbox]:checked:after {
@@ -1447,16 +1760,16 @@ div#email_info {
     box-sizing: border-box;
     padding-left: 4px;
     line-height: 23px;
-    color: #fff;
-    background-color: #F2CD00;
+    color: var(--bs-white);
+    background-color: var(--bs-warning);
     top: 0;
     opacity: 1;
     left: 0;
-    border: 1px solid #F2CD00;
+    border: 1px solid var(--bs-warning);
     border-radius: 2px
 }
 
-#attributeList ul li input[type=radio]+label {
+#attributeList ul li input[type=radio] + label {
     float: left;
     display: inline-block !important;
     margin: .5rem;
@@ -1468,19 +1781,19 @@ div#email_info {
     appearance: none;
     width: 20px;
     height: 20px;
-    border: 1px solid #dedede;
+    border: 1px solid var(--bs-light);
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--bs-white);
     outline: 0
 }
 
 #attributeVerification #attributeList ul li input[type=radio]:focus {
-    box-shadow: 0 0 0 3px #000
+    box-shadow: 0 0 0 3px var(--bs-black)
 }
 
 #attributeList ul li input[type=radio]:checked {
-    background-color: #F2CD00;
-    border: 1px solid #F2CD00
+    background-color: var(--bs-warning);
+    border: 1px solid var(--bs-warning)
 }
 
 .attrEntry .verificationInfoText {
@@ -1488,7 +1801,7 @@ div#email_info {
 }
 
 #attributeList ul li .attrEntry select:hover {
-    border-color: #888
+    border-color: var(--bs-gray-500)
 }
 
 #attributeList ul li .attrEntry select option {
@@ -1500,10 +1813,10 @@ div#email_info {
     font-size: 10px
 }
 
-.disclaimer-container .disclaimer-link {
-    display: block;
-    width: fit-content
-}
+    .disclaimer-container .disclaimer-link {
+        display: block;
+        width: fit-content
+    }
 
 .disclaimer-container-page-level {
     margin-top: 10px
@@ -1533,7 +1846,7 @@ div#email_info {
 #SignInWithLogonNameExchange,
 #SignUpWithLogonEmailExchange,
 #SignUpWithLogonNameExchange {
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     background-image: url(none);
     background-size: 10%;
     background-position-x: 95%;
@@ -1551,27 +1864,27 @@ div#email_info {
         margin-top: 40px
     }
 
-    .row .panel-default .panel-body .branding img {
-        display: block;
-        height: 80px;
-        width: auto;
-        margin: 0 auto
-    }
+        .row .panel-default .panel-body .branding img {
+            display: block;
+            height: 80px;
+            width: auto;
+            margin: 0 auto
+        }
 
-    .row .panel-default .panel-body .branding h1 {
-        display: none
-    }
+        .row .panel-default .panel-body .branding h1 {
+            display: none
+        }
 
-    .row .panel-default .panel-body h3 {
-        font-size: 1.5em;
-        margin-top: 15px
-    }
+        .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            margin-top: 15px
+        }
 
     #attributeVerification #attributeList ul li input {
         width: 60%;
         height: 40px;
         border-radius: .5rem;
-        border: 1px solid #605e5c;
+        border: 1px solid var(--bs-gray-slate);
         text-indent: 10px
     }
 }
@@ -1583,7 +1896,7 @@ div#email_info {
 .error-page-help,
 .error-page-messagedetails,
 body {
-    font-family: wf_segoe-ui_normal, "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif
+    font-family: var(--bs-font-sans-serif)
 }
 
 body {
@@ -1610,16 +1923,16 @@ h2 {
 
 a {
     text-decoration: none;
-    color: #696969
+    color: var(--bs-gray-600)
 }
 
-a:visited {
-    font-weight: 400
-}
+    a:visited {
+        font-weight: 400
+    }
 
-a:hover {
-    text-decoration: underline
-}
+    a:hover {
+        text-decoration: underline
+    }
 
 .error-page {
     margin: 110px 0 0 80px;
@@ -1629,7 +1942,7 @@ a:hover {
 .error-page-content {
     top: 110px;
     width: 400px;
-    color: #000
+    color: var(--bs-black)
 }
 
 #api {
@@ -1686,7 +1999,7 @@ html {
 #SignInWithLogonNameExchange,
 #SignUpWithLogonEmailExchange,
 #SignUpWithLogonNameExchange {
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     background-image: url(none);
     background-size: 10%;
     background-position-x: 95%;
@@ -1704,27 +2017,27 @@ html {
         margin-top: 40px
     }
 
-    .row .panel-default .panel-body .branding img {
-        display: block;
-        height: 80px;
-        width: auto;
-        margin: 0 auto
-    }
+        .row .panel-default .panel-body .branding img {
+            display: block;
+            height: 80px;
+            width: auto;
+            margin: 0 auto
+        }
 
-    .row .panel-default .panel-body .branding h1 {
-        display: none
-    }
+        .row .panel-default .panel-body .branding h1 {
+            display: none
+        }
 
-    .row .panel-default .panel-body h3 {
-        font-size: 1.5em;
-        margin-top: 15px
-    }
+        .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            margin-top: 15px
+        }
 
     #attributeVerification #attributeList ul li input {
         width: 60%;
         height: 40px;
         border-radius: .5rem;
-        border: 1px solid #605e5c;
+        border: 1px solid var(--bs-gray-slate);
         text-indent: 10px
     }
 }
@@ -1754,30 +2067,30 @@ html {
 }
 
 #simplemodal-overlay {
-    background: #000
+    background: var(--bs-black)
 }
 
 #simplemodal-container {
-    background: #fff;
+    background: var(--bs-white);
     padding: 30px 20px 20px;
     text-align: left;
-    -webkit-box-shadow: 0 0 30px 2px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 0 0 30px 2px rgba(0, 0, 0, .5);
-    box-shadow: 0 0 30px 2px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 30px 2px var(--bs-black-rgba);
+    -moz-box-shadow: 0 0 30px 2px var(--bs-black-rgba);
+    box-shadow: 0 0 30px 2px var(--bs-black-rgba);
     overflow: hidden
 }
 
-#simplemodal-container h2 {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #1c5b96;
-    font-size: 20px;
-    line-height: 26px;
-    margin-bottom: 10px
-}
+    #simplemodal-container h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--bs-info-text-emphasis);
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 10px
+    }
 
-#simplemodal-container h1 {
-    margin-bottom: 20px
-}
+    #simplemodal-container h1 {
+        margin-bottom: 20px
+    }
 
 body {
     margin: 0;
@@ -1799,11 +2112,11 @@ body {
     margin-right: auto
 }
 
-#api .intro p {
-    text-align: left;
-    font-size: 1.5em;
-    margin: auto
-}
+    #api .intro p {
+        text-align: left;
+        font-size: 1.5em;
+        margin: auto
+    }
 
 table {
     width: 40%;
@@ -1826,23 +2139,23 @@ button.accountButton {
     margin-left: auto;
     margin-bottom: 0;
     white-space: normal;
-    border: 1px solid #605e5c;
+    border: 1px solid var(--bs-gray-slate);
     -moz-border-radius: .5rem;
     -webkit-border-radius: .5rem;
     border-radius: .5rem
 }
 
-button.accountButton:hover {
-    color: #fff
-}
+    button.accountButton:hover {
+        color: var(--bs-white)
+    }
 
 #SignInWithLogonNameExchange {
-    background-color: #fff;
+    background-color: var(--bs-white);
     background-size: 10%;
     background-position-x: 2%;
     background-position-y: 50%;
-    color: #F2CD00;
-    border-color: #F2CD00;
+    color: var(--bs-warning);
+    border-color: var(--bs-warning);
     border-width: thin;
     border-style: solid;
     background-repeat: no-repeat;
@@ -1852,9 +2165,9 @@ button.accountButton:hover {
     margin-left: auto
 }
 
-#SignInWithLogonNameExchange:hover {
-    background-color: #fff
-}
+    #SignInWithLogonNameExchange:hover {
+        background-color: var(--bs-white)
+    }
 
 /* endinject */
 
@@ -1867,7 +2180,7 @@ button.accountButton:hover {
 #SignInWithLogonNameExchange,
 #SignUpWithLogonEmailExchange,
 #SignUpWithLogonNameExchange {
-    background-color: #F2CD00;
+    background-color: var(--bs-warning);
     background-image: url(none);
     background-size: 10%;
     background-position-x: 95%;
@@ -1885,27 +2198,27 @@ button.accountButton:hover {
         margin-top: 40px
     }
 
-    .row .panel-default .panel-body .branding img {
-        display: block;
-        height: 80px;
-        width: auto;
-        margin: 0 auto
-    }
+        .row .panel-default .panel-body .branding img {
+            display: block;
+            height: 80px;
+            width: auto;
+            margin: 0 auto
+        }
 
-    .row .panel-default .panel-body .branding h1 {
-        display: none
-    }
+        .row .panel-default .panel-body .branding h1 {
+            display: none
+        }
 
-    .row .panel-default .panel-body h3 {
-        font-size: 1.5em;
-        margin-top: 15px
-    }
+        .row .panel-default .panel-body h3 {
+            font-size: 1.5em;
+            margin-top: 15px
+        }
 
     #attributeVerification #attributeList ul li input {
         width: 60%;
         height: 40px;
         border-radius: .5rem;
-        border: 1px solid #605e5c;
+        border: 1px solid var(--bs-gray-slate);
         text-indent: 10px
     }
 }
@@ -1921,7 +2234,7 @@ button.accountButton:hover {
 .phonefactor_container .row .panel-default {
     margin: auto;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--bs-white);
     min-width: 400px
 }
 
@@ -1932,10 +2245,10 @@ button.accountButton:hover {
     padding: 4.2rem 1rem
 }
 
-.phonefactor_container .row .panel-body img {
-    height: 70px;
-    margin: 0 auto
-}
+    .phonefactor_container .row .panel-body img {
+        height: 70px;
+        margin: 0 auto
+    }
 
 button#sendCode,
 button#verifyCode,
@@ -1958,28 +2271,28 @@ button#verifyPhone {
     border-radius: .5rem;
     width: 100%;
     height: 50px;
-    border: 1px solid #6a6a6a;
+    border: 1px solid var(--bs-gray-cement);
     text-indent: 20px;
     outline: 0
 }
 
-#codeVerification #verificationCode:focus {
-    border: 2px solid #000
-}
+    #codeVerification #verificationCode:focus {
+        border: 2px solid var(--bs-black)
+    }
 
 #codeVerification #retryCode {
     cursor: pointer;
-    color: #337ab7;
+    color: var(--bs-blue);
     text-decoration: none
 }
 
-#codeVerification #retryCode:focus,
-#codeVerification #retryCode:hover {
-    text-decoration: underline
-}
+    #codeVerification #retryCode:focus,
+    #codeVerification #retryCode:hover {
+        text-decoration: underline
+    }
 
 #codeVerification .error.itemLevel p {
-    color: #d30000
+    color: var(--bs-red)
 }
 
 #api #phonefactor_initial .intro p {
@@ -1999,9 +2312,9 @@ button#verifyPhone {
     margin-top: 10px
 }
 
-#api #phoneEntry.phoneEntry .input .code {
-    text-align: left
-}
+    #api #phoneEntry.phoneEntry .input .code {
+        text-align: left
+    }
 
 #api #phoneEntry .input .code #countryCode {
     height: 50px;
@@ -2011,30 +2324,30 @@ button#verifyPhone {
     padding-left: 15px
 }
 
-#api #phoneEntry .input .code #countryCode:focus {
-    border: 2px solid #000
-}
+    #api #phoneEntry .input .code #countryCode:focus {
+        border: 2px solid var(--bs-black)
+    }
 
 #api #phoneEntry .input .error.itemLevel p {
-    color: #d30000
+    color: var(--bs-red)
 }
 
 #api #phoneEntry.phoneEntry .input .number {
     text-align: left
 }
 
-#api #phoneEntry.phoneEntry .input .number #number {
-    border-radius: .5rem;
-    width: 100%;
-    height: 50px;
-    border: 1px solid #6a6a6a;
-    text-indent: 20px;
-    outline: 0
-}
+    #api #phoneEntry.phoneEntry .input .number #number {
+        border-radius: .5rem;
+        width: 100%;
+        height: 50px;
+        border: 1px solid var(--bs-gray-cement);
+        text-indent: 20px;
+        outline: 0
+    }
 
-#api #phoneEntry.phoneEntry .input .number #number:focus {
-    border: 2px solid #000
-}
+        #api #phoneEntry.phoneEntry .input .number #number:focus {
+            border: 2px solid var(--bs-black)
+        }
 
 #api #phonefactor_initial #phoneEntry select#countryCode {
     height: 45px;
@@ -2042,11 +2355,11 @@ button#verifyPhone {
     width: 100%;
     margin-bottom: 15px;
     padding-left: 15px;
-    border: 1px solid #6a6a6a
+    border: 1px solid var(--bs-gray-cement)
 }
 
 #api #phoneEntry select:hover {
-    border-color: #888
+    border-color: var(--bs-gray-500)
 }
 
 #api #phoneEntry select option {
@@ -2057,13 +2370,13 @@ button#verifyPhone {
     border-radius: .5rem;
     width: 100%;
     height: 50px;
-    border: 1px solid #6a6a6a;
+    border: 1px solid var(--bs-gray-cement);
     text-indent: 20px;
     outline: 0
 }
 
 #api #phonefactor_initial #phoneEntry input#localNumber:focus {
-    border: 2px solid #000
+    border: 2px solid var(--bs-black)
 }
 
 .phoneNumbers .phoneNumber .displayName,

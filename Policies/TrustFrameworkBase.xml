@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<TrustFrameworkPolicy
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06"
   PolicySchemaVersion="0.3.0.0"
@@ -34,8 +33,7 @@
         <UserHelpText />
         <UserInputType>TextBox</UserInputType>
         <Restriction>
-          <Pattern RegularExpression="^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$"
-            HelpText="The username you provided is not valid. It must begin with an alphabet or number and can contain alphabets, numbers and the following symbols: _ -" />
+          <Pattern RegularExpression="^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$" HelpText="The username you provided is not valid. It must begin with an alphabet or number and can contain alphabets, numbers and the following symbols: _ -" />
         </Restriction>
       </ClaimType>
       <ClaimType Id="tenantId">
@@ -44,8 +42,7 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="tid" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="tid" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.microsoft.com/identity/claims/tenantid" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/tenantid" />
         </DefaultPartnerClaimTypes>
         <UserHelpText>Tenant identifier (ID) of the user object in Azure AD.</UserHelpText>
       </ClaimType>
@@ -55,8 +52,7 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="oid" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="oid" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.microsoft.com/identity/claims/objectidentifier" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/objectidentifier" />
         </DefaultPartnerClaimTypes>
         <UserHelpText>Object identifier (ID) of the user object in Azure AD.</UserHelpText>
       </ClaimType>
@@ -68,7 +64,7 @@
         <UserInputType>TextBox</UserInputType>
         <Restriction>
           <Pattern RegularExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" HelpText="The email you provided is not valid." />
-      </Restriction>
+        </Restriction>
       </ClaimType>
       <ClaimType Id="signInNames.emailAddress">
         <DisplayName>Email Address</DisplayName>
@@ -99,23 +95,16 @@
         <UserHelpText>Enter new password</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern
-            RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$"
-            HelpText="8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ." />
+          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText="8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ." />
         </Restriction>
       </ClaimType>
       <!-- The password regular expression above is constructed for AAD passwords based on
       restrictions at https://msdn.microsoft.com/en-us/library/azure/jj943764.aspx
 
-        ^( # one of the following four combinations must appear in the password
-         (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit
-         (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character
-      (i.e. non-alpha or digit)
-         (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character
-         (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character
+        ^( # one of the following four combinations must appear in the password (?=.*[a-z])(?=.*[A-Z])(?=.*\d) |            # matches lower case, upper case or digit (?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9]) |  # matches lower case, upper case or special character
+      (i.e. non-alpha or digit) (?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]) |     # matches lower case, digit, or special character (?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9])       # matches upper case, digit, or special character
         )
-        ( # The password must match the following restrictions
-         [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)
+        ( # The password must match the following restrictions [A-Za-z\d@#$%^&*\-_+=[\]{}|\\:',?/`~"();!] |   # The list of all acceptable characters (without .)
          \.(?!@)                                        # or . can appear as long as not followed by @
         ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive-->
       <ClaimType Id="reenterPassword">
@@ -124,9 +113,7 @@
         <UserHelpText>Confirm new password</UserHelpText>
         <UserInputType>Password</UserInputType>
         <Restriction>
-          <Pattern
-            RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$"
-            HelpText=" " />
+          <Pattern RegularExpression="^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$" HelpText=" " />
         </Restriction>
       </ClaimType>
       <ClaimType Id="passwordPolicies">
@@ -170,8 +157,7 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="idp" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="idp" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.microsoft.com/identity/claims/identityprovider" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/identityprovider" />
         </DefaultPartnerClaimTypes>
         <UserHelpText />
       </ClaimType>
@@ -181,8 +167,7 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="unique_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="name" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name" />
         </DefaultPartnerClaimTypes>
         <UserHelpText>Your display name.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
@@ -219,9 +204,7 @@
         <UserHelpText>Email address that can be used to contact you.</UserHelpText>
         <UserInputType>TextBox</UserInputType>
         <Restriction>
-          <Pattern
-            RegularExpression="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
-            HelpText="Please enter a valid email address." />
+          <Pattern RegularExpression="^[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+(?:\.[a-zA-Z0-9!#$%&amp;'+^_`{}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$" HelpText="Please enter a valid email address." />
         </Restriction>
       </ClaimType>
       <ClaimType Id="otherMails">
@@ -235,8 +218,7 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="upn" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="upn" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.microsoft.com/identity/claims/userprincipalname" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/userprincipalname" />
         </DefaultPartnerClaimTypes>
         <UserHelpText>Your user name as stored in the Azure Active Directory.</UserHelpText>
       </ClaimType>
@@ -318,8 +300,7 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="given_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="given_name" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname" />
         </DefaultPartnerClaimTypes>
         <UserHelpText>Your given name (also known as first name).</UserHelpText>
         <UserInputType>TextBox</UserInputType>
@@ -330,16 +311,14 @@
         <DefaultPartnerClaimTypes>
           <Protocol Name="OAuth2" PartnerClaimType="family_name" />
           <Protocol Name="OpenIdConnect" PartnerClaimType="family_name" />
-          <Protocol Name="SAML2"
-            PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" />
+          <Protocol Name="SAML2" PartnerClaimType="http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname" />
         </DefaultPartnerClaimTypes>
         <UserHelpText>Your surname (also known as family name or last name).</UserHelpText>
         <UserInputType>TextBox</UserInputType>
       </ClaimType>
     </ClaimsSchema>
     <ClaimsTransformations>
-      <ClaimsTransformation Id="CreateOtherMailsFromEmail"
-        TransformationMethod="AddItemToStringCollection">
+      <ClaimsTransformation Id="CreateOtherMailsFromEmail" TransformationMethod="AddItemToStringCollection">
         <InputClaims>
           <InputClaim ClaimTypeReferenceId="email" TransformationClaimType="item" />
           <InputClaim ClaimTypeReferenceId="otherMails" TransformationClaimType="collection" />
@@ -362,25 +341,20 @@
           <InputClaim ClaimTypeReferenceId="upnUserName" TransformationClaimType="inputClaim" />
         </InputClaims>
         <InputParameters>
-          <InputParameter Id="stringFormat" DataType="string"
-            Value="cpim_{0}@{RelyingPartyTenantId}" />
+          <InputParameter Id="stringFormat" DataType="string" Value="cpim_{0}@{RelyingPartyTenantId}" />
         </InputParameters>
         <OutputClaims>
-          <OutputClaim ClaimTypeReferenceId="userPrincipalName"
-            TransformationClaimType="outputClaim" />
+          <OutputClaim ClaimTypeReferenceId="userPrincipalName" TransformationClaimType="outputClaim" />
         </OutputClaims>
       </ClaimsTransformation>
 
-      <ClaimsTransformation Id="CreateAlternativeSecurityId"
-        TransformationMethod="CreateAlternativeSecurityId">
+      <ClaimsTransformation Id="CreateAlternativeSecurityId" TransformationMethod="CreateAlternativeSecurityId">
         <InputClaims>
           <InputClaim ClaimTypeReferenceId="issuerUserId" TransformationClaimType="key" />
-          <InputClaim ClaimTypeReferenceId="identityProvider"
-            TransformationClaimType="identityProvider" />
+          <InputClaim ClaimTypeReferenceId="identityProvider" TransformationClaimType="identityProvider" />
         </InputClaims>
         <OutputClaims>
-          <OutputClaim ClaimTypeReferenceId="alternativeSecurityId"
-            TransformationClaimType="alternativeSecurityId" />
+          <OutputClaim ClaimTypeReferenceId="alternativeSecurityId" TransformationClaimType="alternativeSecurityId" />
         </OutputClaims>
       </ClaimsTransformation>
 
@@ -396,19 +370,16 @@
         </OutputClaims>
       </ClaimsTransformation>
 
-      <ClaimsTransformation Id="CreateSubjectClaimFromAlternativeSecurityId"
-        TransformationMethod="CreateStringClaim">
+      <ClaimsTransformation Id="CreateSubjectClaimFromAlternativeSecurityId" TransformationMethod="CreateStringClaim">
         <InputParameters>
-          <InputParameter Id="value" DataType="string"
-            Value="Not supported currently. Use oid claim." />
+          <InputParameter Id="value" DataType="string" Value="Not supported currently. Use oid claim." />
         </InputParameters>
         <OutputClaims>
           <OutputClaim ClaimTypeReferenceId="sub" TransformationClaimType="createdClaim" />
         </OutputClaims>
       </ClaimsTransformation>
 
-      <ClaimsTransformation Id="AssertAccountEnabledIsTrue"
-        TransformationMethod="AssertBooleanClaimIsEqualToValue">
+      <ClaimsTransformation Id="AssertAccountEnabledIsTrue" TransformationMethod="AssertBooleanClaimIsEqualToValue">
         <InputClaims>
           <InputClaim ClaimTypeReferenceId="accountEnabled" TransformationClaimType="inputClaim" />
         </InputClaims>
@@ -418,13 +389,10 @@
       </ClaimsTransformation>
       <!--claims
       transformation for refresh token revocation -->
-      <ClaimsTransformation Id="AssertRefreshTokenIssuedLaterThanValidFromDate"
-        TransformationMethod="AssertDateTimeIsGreaterThan">
+      <ClaimsTransformation Id="AssertRefreshTokenIssuedLaterThanValidFromDate" TransformationMethod="AssertDateTimeIsGreaterThan">
         <InputClaims>
-          <InputClaim ClaimTypeReferenceId="refreshTokenIssuedOnDateTime"
-            TransformationClaimType="leftOperand" />
-          <InputClaim ClaimTypeReferenceId="refreshTokensValidFromDateTime"
-            TransformationClaimType="rightOperand" />
+          <InputClaim ClaimTypeReferenceId="refreshTokenIssuedOnDateTime" TransformationClaimType="leftOperand" />
+          <InputClaim ClaimTypeReferenceId="refreshTokensValidFromDateTime" TransformationClaimType="rightOperand" />
         </InputClaims>
         <InputParameters>
           <InputParameter Id="AssertIfEqualTo" DataType="boolean" Value="false" />
@@ -587,10 +555,8 @@
             <OutputClaim ClaimTypeReferenceId="surname" PartnerClaimType="last_name" />
             <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
             <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="email" />
-            <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="facebook.com"
-              AlwaysUseDefaultValue="true" />
-            <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
+            <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="facebook.com" AlwaysUseDefaultValue="true" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" AlwaysUseDefaultValue="true" />
           </OutputClaims>
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName" />
@@ -625,13 +591,10 @@
             <Item Key="setting.enableRememberMe">True</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="username"
-              Required="true" />
+            <InputClaim ClaimTypeReferenceId="signInName" PartnerClaimType="username" Required="true" />
             <InputClaim ClaimTypeReferenceId="password" Required="true" />
-            <InputClaim ClaimTypeReferenceId="grant_type" DefaultValue="password"
-              AlwaysUseDefaultValue="true" />
-            <InputClaim ClaimTypeReferenceId="scope" DefaultValue="openid"
-              AlwaysUseDefaultValue="true" />
+            <InputClaim ClaimTypeReferenceId="grant_type" DefaultValue="password" AlwaysUseDefaultValue="true" />
+            <InputClaim ClaimTypeReferenceId="scope" DefaultValue="openid" AlwaysUseDefaultValue="true" />
             <InputClaim ClaimTypeReferenceId="nca" PartnerClaimType="nca" DefaultValue="1" />
           </InputClaims>
           <OutputClaims>
@@ -641,8 +604,7 @@
             <OutputClaim ClaimTypeReferenceId="surName" PartnerClaimType="family_name" />
             <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" PartnerClaimType="upn" />
-            <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="localAccountAuthentication" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="localAccountAuthentication" />
           </OutputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>
@@ -653,8 +615,7 @@
       <TechnicalProfiles>
         <TechnicalProfile Id="PhoneFactor-InputOrVerify">
           <DisplayName>PhoneFactor</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.PhoneFactorProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.PhoneFactorProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="ContentDefinitionReferenceId">api.phonefactor</Item>
             <Item Key="ManualPhoneNumberEntryAllowed">true</Item>
@@ -670,10 +631,8 @@
             <InputClaim ClaimTypeReferenceId="strongAuthenticationPhoneNumber" />
           </InputClaims>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber"
-              PartnerClaimType="Verified.OfficePhone" />
-            <OutputClaim ClaimTypeReferenceId="newPhoneNumberEntered"
-              PartnerClaimType="newPhoneNumberEntered" />
+            <OutputClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="Verified.OfficePhone" />
+            <OutputClaim ClaimTypeReferenceId="newPhoneNumberEntered" PartnerClaimType="newPhoneNumberEntered" />
           </OutputClaims>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-MFA" />
         </TechnicalProfile>
@@ -699,8 +658,7 @@
             <Item Key="DiscoverMetadataByTokenIssuer">true</Item>
             <!-- The key below allows you to specify each of the Azure AD tenants that can be used
             to sign in. Update the GUIDs below for each tenant. -->
-            <!-- <Item
-            Key="ValidTokenIssuerPrefixes">https://sts.windows.net/00000000-0000-0000-0000-000000000000,https://sts.windows.net/11111111-1111-1111-1111-111111111111</Item> -->
+            <!-- <Item Key="ValidTokenIssuerPrefixes">https://sts.windows.net/00000000-0000-0000-0000-000000000000,https://sts.windows.net/11111111-1111-1111-1111-111111111111</Item> -->
             <!-- The commented key below specifies that users from any tenant can sign-in. Uncomment
             if you would like anyone with an Azure AD account to be able to sign in. -->
             <Item Key="ValidTokenIssuerPrefixes">https://sts.windows.net/</Item>
@@ -738,8 +696,7 @@
       <TechnicalProfiles>
         <TechnicalProfile Id="AAD-Common">
           <DisplayName>Azure Active Directory</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <CryptographicKeys>
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
           </CryptographicKeys>
@@ -759,8 +716,7 @@
             <InputClaimsTransformation ReferenceId="CreateOtherMailsFromEmail" />
           </InputClaimsTransformations>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="alternativeSecurityId"
-              PartnerClaimType="alternativeSecurityId" Required="true" />
+            <InputClaim ClaimTypeReferenceId="alternativeSecurityId" PartnerClaimType="alternativeSecurityId" Required="true" />
           </InputClaims>
           <PersistedClaims>
             <!-- Required claims -->
@@ -792,8 +748,7 @@
             <Item Key="RaiseErrorIfClaimsPrincipalDoesNotExist">true</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="alternativeSecurityId"
-              PartnerClaimType="alternativeSecurityId" Required="true" />
+            <InputClaim ClaimTypeReferenceId="alternativeSecurityId" PartnerClaimType="alternativeSecurityId" Required="true" />
           </InputClaims>
           <OutputClaims>
             <!-- Required claims -->
@@ -824,19 +779,16 @@
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress"
-              Required="true" />
+            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" Required="true" />
           </InputClaims>
           <PersistedClaims>
             <!-- Required claims -->
             <PersistedClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" />
             <PersistedClaim ClaimTypeReferenceId="newPassword" PartnerClaimType="password" />
             <PersistedClaim ClaimTypeReferenceId="displayName" DefaultValue="unknown" />
-            <PersistedClaim ClaimTypeReferenceId="passwordPolicies"
-              DefaultValue="DisablePasswordExpiration" />
+            <PersistedClaim ClaimTypeReferenceId="passwordPolicies" DefaultValue="DisablePasswordExpiration" />
 
-            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber"
-              PartnerClaimType="strongAuthenticationPhoneNumber" />
+            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="strongAuthenticationPhoneNumber" />
 
             <!-- Optional claims. -->
             <PersistedClaim ClaimTypeReferenceId="givenName" />
@@ -845,8 +797,7 @@
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="newUser" PartnerClaimType="newClaimsPrincipalCreated" />
-            <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="localAccountAuthentication" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="localAccountAuthentication" />
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
             <OutputClaim ClaimTypeReferenceId="signInNames.emailAddress" />
           </OutputClaims>
@@ -861,14 +812,12 @@
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress"
-              Required="true" />
+            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="signInNames.emailAddress" Required="true" />
           </InputClaims>
           <OutputClaims>
             <!-- Required claims -->
             <OutputClaim ClaimTypeReferenceId="objectId" />
-            <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="localAccountAuthentication" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="localAccountAuthentication" />
 
             <OutputClaim ClaimTypeReferenceId="strongAuthenticationPhoneNumber" />
 
@@ -900,8 +849,7 @@
 
             <!-- If the user stepped up during password reset, their phone number should be
             persisted for future authentication requests. -->
-            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber"
-              PartnerClaimType="strongAuthenticationPhoneNumber" />
+            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="strongAuthenticationPhoneNumber" />
 
           </PersistedClaims>
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
@@ -925,8 +873,7 @@
 
             <!-- If the user stepped up during password reset, their phone number should be
             persisted for future authentication requests. -->
-            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber"
-              PartnerClaimType="strongAuthenticationPhoneNumber" />
+            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="strongAuthenticationPhoneNumber" />
 
             <!-- Optional claims -->
             <PersistedClaim ClaimTypeReferenceId="givenName" />
@@ -972,8 +919,7 @@
           </InputClaims>
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="objectId" />
-            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber"
-              PartnerClaimType="strongAuthenticationPhoneNumber" />
+            <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" PartnerClaimType="strongAuthenticationPhoneNumber" />
           </PersistedClaims>
           <IncludeTechnicalProfile ReferenceId="AAD-Common" />
         </TechnicalProfile>
@@ -987,8 +933,7 @@
 
         <TechnicalProfile Id="SelfAsserted-Social">
           <DisplayName>User ID signup</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="ContentDefinitionReferenceId">api.socialccountsignup</Item>
           </Metadata>
@@ -1035,8 +980,7 @@
 
         <TechnicalProfile Id="SelfAsserted-ProfileUpdate">
           <DisplayName>User ID signup</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="ContentDefinitionReferenceId">api.selfasserted.profileupdate</Item>
           </Metadata>
@@ -1076,8 +1020,7 @@
 
         <TechnicalProfile Id="LocalAccountSignUpWithLogonEmail">
           <DisplayName>Email signup</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="IpAddressClaimReferenceId">IpAddress</Item>
             <Item Key="ContentDefinitionReferenceId">api.localaccountsignup</Item>
@@ -1090,8 +1033,7 @@
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="objectId" />
-            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email"
-              Required="true" />
+            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="newPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="reenterPassword" Required="true" />
             <OutputClaim ClaimTypeReferenceId="executed-SelfAsserted-Input" DefaultValue="true" />
@@ -1112,8 +1054,7 @@
         <!-- This technical profile uses a validation technical profile to authenticate the user. -->
         <TechnicalProfile Id="SelfAsserted-LocalAccountSignin-Email">
           <DisplayName>Local Account Signin</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="SignUpTarget">SignUpWithLogonEmailExchange</Item>
             <Item Key="setting.operatingMode">Email</Item>
@@ -1122,8 +1063,7 @@
           </Metadata>
           <IncludeInSso>false</IncludeInSso>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="signInName" DefaultValue="{OIDC:LoginHint}"
-              AlwaysUseDefaultValue="true" />
+            <InputClaim ClaimTypeReferenceId="signInName" DefaultValue="{OIDC:LoginHint}" AlwaysUseDefaultValue="true" />
           </InputClaims>
           <OutputClaims>
             <OutputClaim ClaimTypeReferenceId="signInName" Required="true" />
@@ -1142,8 +1082,7 @@
         read from the directory. -->
         <TechnicalProfile Id="LocalAccountDiscoveryUsingEmailAddress">
           <DisplayName>Reset password using email address</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="IpAddressClaimReferenceId">IpAddress</Item>
             <Item Key="ContentDefinitionReferenceId">api.localaccountpasswordreset</Item>
@@ -1153,8 +1092,7 @@
           </CryptographicKeys>
           <IncludeInSso>false</IncludeInSso>
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email"
-              Required="true" />
+            <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="Verified.Email" Required="true" />
             <OutputClaim ClaimTypeReferenceId="objectId" />
             <OutputClaim ClaimTypeReferenceId="userPrincipalName" />
             <OutputClaim ClaimTypeReferenceId="authenticationSource" />
@@ -1169,8 +1107,7 @@
 
         <TechnicalProfile Id="LocalAccountWritePasswordUsingObjectId">
           <DisplayName>Change password (username)</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="ContentDefinitionReferenceId">api.localaccountpasswordreset</Item>
           </Metadata>
@@ -1200,14 +1137,12 @@
       <TechnicalProfiles>
         <TechnicalProfile Id="SM-Noop">
           <DisplayName>Noop Session Management Provider</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.SSO.NoopSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.SSO.NoopSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
         </TechnicalProfile>
 
         <TechnicalProfile Id="SM-AAD">
           <DisplayName>Session Mananagement Provider</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.SSO.DefaultSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.SSO.DefaultSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="objectId" />
             <PersistedClaim ClaimTypeReferenceId="signInName" />
@@ -1228,8 +1163,7 @@
 
         <TechnicalProfile Id="SM-SocialLogin">
           <DisplayName>Session Mananagement Provider</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.SSO.ExternalLoginSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.SSO.ExternalLoginSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <Metadata>
             <Item Key="AlwaysFetchClaimsFromProvider">true</Item>
           </Metadata>
@@ -1240,8 +1174,7 @@
 
         <TechnicalProfile Id="SM-MFA">
           <DisplayName>Session Mananagement Provider</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.SSO.DefaultSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.SSO.DefaultSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <PersistedClaims>
             <PersistedClaim ClaimTypeReferenceId="Verified.strongAuthenticationPhoneNumber" />
           </PersistedClaims>
@@ -1253,8 +1186,7 @@
         <!-- Session management technical profile for OIDC based tokens -->
         <TechnicalProfile Id="SM-jwt-issuer">
           <DisplayName>Session Management Provider</DisplayName>
-          <Protocol Name="Proprietary"
-            Handler="Web.TPEngine.SSO.OAuthSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.SSO.OAuthSSOSessionProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
@@ -1284,8 +1216,7 @@
           </Metadata>
           <CryptographicKeys>
             <Key Id="issuer_secret" StorageReferenceId="B2C_1A_TokenSigningKeyContainer" />
-            <Key Id="issuer_refresh_token_key"
-              StorageReferenceId="B2C_1A_TokenEncryptionKeyContainer" />
+            <Key Id="issuer_refresh_token_key" StorageReferenceId="B2C_1A_TokenEncryptionKeyContainer" />
           </CryptographicKeys>
           <UseTechnicalProfileForSessionManagement ReferenceId="SM-jwt-issuer" />
         </TechnicalProfile>
@@ -1338,8 +1269,7 @@
             <Item Key="scope">email</Item>
             <Item Key="HttpBinding">POST</Item>
             <Item Key="UsePolicyInRedirectUri">0</Item>
-            <Item Key="client_id">
-              138993224993-9k98d25a6o415domheq7as6rtftu2n6c.apps.googleusercontent.com</Item>
+            <Item Key="client_id">138993224993-9k98d25a6o415domheq7as6rtftu2n6c.apps.googleusercontent.com</Item>
           </Metadata>
           <CryptographicKeys>
             <Key Id="client_secret" StorageReferenceId="B2C_1A_GoogleSecret" />
@@ -1354,8 +1284,7 @@
             <OutputClaim ClaimTypeReferenceId="surname" PartnerClaimType="family_name" />
             <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="name" />
             <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="google.com" />
-            <OutputClaim ClaimTypeReferenceId="authenticationSource"
-              DefaultValue="socialIdpAuthentication" />
+            <OutputClaim ClaimTypeReferenceId="authenticationSource" DefaultValue="socialIdpAuthentication" />
           </OutputClaims>
           <OutputClaimsTransformations>
             <OutputClaimsTransformation ReferenceId="CreateRandomUPNUserName" />
