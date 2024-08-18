@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.ApplicationInsights.Channel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Abstractions;
+using System.Diagnostics.Metrics;
 
 namespace TaskWebApi.Controllers
 {
@@ -72,7 +75,7 @@ namespace TaskWebApi.Controllers
             }
             catch (Exception exc)
             {
-                return BadRequest(exc.Message);
+                return BadRequest(exc.ToString());
             }
         }
 

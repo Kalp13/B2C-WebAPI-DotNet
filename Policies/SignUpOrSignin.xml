@@ -19,9 +19,9 @@
         <DisplayName>Enter your Email address</DisplayName>
         <UserHelpText>Email address to use for signing in.</UserHelpText>
         <Restriction>
-            <Pattern RegularExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" HelpText="The email you provided is not valid." />
+          <Pattern RegularExpression="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" HelpText="The email you provided is not valid." />
         </Restriction>
-    </ClaimType>
+      </ClaimType>
       <ClaimType Id="message">
         <DisplayName>Will hold Hello World message</DisplayName>
         <DataType>string</DataType>
@@ -31,24 +31,6 @@
         <DataType>stringCollection</DataType>
         <UserHelpText>User identity providers</UserHelpText>
       </ClaimType>
-      <ClaimType Id="ssoExists">
-        <DisplayName>Single Sign-on user exists</DisplayName>
-        <DataType>boolean</DataType>
-        <DefaultPartnerClaimTypes>
-          <Protocol Name="OAuth2" PartnerClaimType="exists" />
-          <Protocol Name="OpenIdConnect" PartnerClaimType="exists" />
-          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/exists" />
-        </DefaultPartnerClaimTypes>
-      </ClaimType>
-      <ClaimType Id="isOnboarded">
-        <DisplayName>User has been onboarded to platform</DisplayName>
-        <DataType>boolean</DataType>
-        <DefaultPartnerClaimTypes>
-          <Protocol Name="OAuth2" PartnerClaimType="onboarded" />
-          <Protocol Name="OpenIdConnect" PartnerClaimType="onboarded" />
-          <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/onboarded" />
-        </DefaultPartnerClaimTypes>
-      </ClaimType>
       <ClaimType Id="force">
         <DisplayName>Force user sign in for SSO</DisplayName>
         <DataType>boolean</DataType>
@@ -57,6 +39,11 @@
           <Protocol Name="OpenIdConnect" PartnerClaimType="force" />
           <Protocol Name="SAML2" PartnerClaimType="http://schemas.microsoft.com/identity/claims/force" />
         </DefaultPartnerClaimTypes>
+      </ClaimType>
+      <ClaimType Id="isForgotPassword">
+        <DisplayName>isForgotPassword</DisplayName>
+        <DataType>boolean</DataType>
+        <AdminHelpText>Whether the user has selected Forgot your Password</AdminHelpText>
       </ClaimType>
     </ClaimsSchema>
     <ClaimsTransformations>
@@ -106,30 +93,25 @@
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
+
     <ClaimsProvider>
-      <DisplayName>HTTP Request Technical Profiles</DisplayName>
+      <DisplayName>Local Account</DisplayName>
       <TechnicalProfiles>
-        <TechnicalProfile Id="LookupIdentity">
-          <DisplayName>Check the user identity</DisplayName>
-          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-          <Metadata>
-            <Item Key="ServiceUrl">https://taskwebapi20240719070204.azurewebsites.net/api/Validation/LookupIdentity</Item>
-            <Item Key="AuthenticationType">None</Item>
-            <Item Key="SendClaimsIn">QueryString</Item>
-            <Item Key="AllowInsecureAuthInProduction">true</Item>
-            <Item Key="DebugMode">true</Item>
-            <Item Key="ClaimUsedForRequestPayload">signInName</Item>
-          </Metadata>
-          <InputClaims>
-            <InputClaim ClaimTypeReferenceId="email" PartnerClaimType="email" />
-          </InputClaims>
+        <TechnicalProfile Id="ForgotPassword">
+          <DisplayName>Forgot your password?</DisplayName>
+          <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.ClaimsTransformationProtocolProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
           <OutputClaims>
-            <OutputClaim ClaimTypeReferenceId="ssoExists" PartnerClaimType="exists" />
-            <OutputClaim ClaimTypeReferenceId="isOnboarded" PartnerClaimType="isOnboarded" />
-            <OutputClaim ClaimTypeReferenceId="identityProviders" PartnerClaimType="identityProviders" />
-            <OutputClaim ClaimTypeReferenceId="identityProvider" DefaultValue="none" />
-            <OutputClaim ClaimTypeReferenceId="force" DefaultValue="False" PartnerClaimType="force" />
+            <OutputClaim ClaimTypeReferenceId="isForgotPassword" DefaultValue="true" AlwaysUseDefaultValue="true" />
           </OutputClaims>
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
+        </TechnicalProfile>
+        <TechnicalProfile Id="SelfAsserted-LocalAccountSignin-Email">
+          <Metadata>
+            <Item Key="setting.forgotPasswordLinkOverride">ForgotPasswordExchange</Item>
+          </Metadata>
+        </TechnicalProfile>
+        <TechnicalProfile Id="LocalAccountWritePasswordUsingObjectId">
+          <UseTechnicalProfileForSessionManagement ReferenceId="SM-AAD" />
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
@@ -170,6 +152,7 @@
             <ClaimsProviderSelection TargetClaimsExchangeId="MicrosoftAccountExchange" />
             <ClaimsProviderSelection TargetClaimsExchangeId="GoogleExchange" />
             <ClaimsProviderSelection ValidationClaimsExchangeId="LocalAccountSigninEmailExchange" />
+            <ClaimsProviderSelection TargetClaimsExchangeId="ForgotPasswordExchange" />
           </ClaimsProviderSelections>
           <ClaimsExchanges>
             <ClaimsExchange Id="LocalAccountSigninEmailExchange" TechnicalProfileReferenceId="SelfAsserted-LocalAccountSignin-Email" />
@@ -189,11 +172,25 @@
             <ClaimsExchange Id="MicrosoftAccountExchange" TechnicalProfileReferenceId="Common-AAD" />
             <ClaimsExchange Id="GoogleExchange" TechnicalProfileReferenceId="Google-OAUTH" />
             <ClaimsExchange Id="SignUpWithLogonEmailExchange" TechnicalProfileReferenceId="LocalAccountSignUpWithLogonEmail" />
+            <ClaimsExchange Id="ForgotPasswordExchange" TechnicalProfileReferenceId="ForgotPassword" />
           </ClaimsExchanges>
         </OrchestrationStep>
 
+        <!-- Check if the user has selected that they forgot their password -->
+        <OrchestrationStep Order="3" Type="InvokeSubJourney">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
+              <Value>isForgotPassword</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <JourneyList>
+            <Candidate SubJourneyReferenceId="PasswordReset" />
+          </JourneyList>
+        </OrchestrationStep>
+
         <!-- For social IDP authentication, attempt to find the user account in the directory. -->
-        <OrchestrationStep Order="3" Type="ClaimsExchange">
+        <OrchestrationStep Order="4" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
               <Value>authenticationSource</Value>
@@ -211,7 +208,7 @@
         This can only happen when authentication happened using a social IDP. If local account was created
       or authentication done
         using ESTS in step 2, then an user account must exist in the directory by this time. -->
-        <OrchestrationStep Order="4" Type="ClaimsExchange">
+        <OrchestrationStep Order="5" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>objectId</Value>
@@ -224,9 +221,8 @@
         </OrchestrationStep>
 
         <!-- This step reads any user attributes that we may not have received when authenticating
-      using ESTS so they can be sent 
-        in the token. -->
-        <OrchestrationStep Order="5" Type="ClaimsExchange">
+      using ESTS so they can be sent in the token. -->
+        <OrchestrationStep Order="6" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
               <Value>authenticationSource</Value>
@@ -238,12 +234,10 @@
             <ClaimsExchange Id="AADUserReadWithObjectId" TechnicalProfileReferenceId="AAD-UserReadUsingObjectId" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <!-- The previous step (SelfAsserted-Social) could have been skipped if there were no
-      attributes to collect 
+        <!-- The previous step (SelfAsserted-Social) could have been skipped if there were no attributes to collect 
            from the user. So, in that case, create the user in the directory if one does not already exist 
-           (verified using objectId which would be set from the last step if account was created in the
-      directory. -->
-        <OrchestrationStep Order="6" Type="ClaimsExchange">
+           (verified using objectId which would be set from the last step if account was created in the directory. -->
+        <OrchestrationStep Order="7" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>objectId</Value>
@@ -254,33 +248,44 @@
             <ClaimsExchange Id="AADUserWrite" TechnicalProfileReferenceId="AAD-UserWriteUsingAlternativeSecurityId" />
           </ClaimsExchanges>
         </OrchestrationStep>
-
-        <!-- Phone verification: If MFA is not required, the next three steps (#5-#7) should be
-      removed.
-           This step checks whether there's a phone number on record,  for the user. If found, then the user is
-      challenged to verify it. -->
-        <OrchestrationStep Order="7" Type="ClaimsExchange">
+        <OrchestrationStep Order="8" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
+              <Value>signInName</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="GetMessageClaimsExchange" TechnicalProfileReferenceId="SSO-Details" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- Phone verification: If MFA is not required, the next three steps (#10-#12) should be removed.
+           This step checks whether there's a phone number on record,  for the user. If found, then the user is challenged to verify it. -->
+        <!-- <OrchestrationStep Order="8" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
               <Value>isActiveMFASession</Value>
-              <Action>SkipThisOrchestrationStep</Action>
-            </Precondition>
-            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
-              <Value>authenticationSource</Value>
-              <Value>socialIdpAuthentication</Value>
               <Action>SkipThisOrchestrationStep</Action>
             </Precondition>
           </Preconditions>
           <ClaimsExchanges>
             <ClaimsExchange Id="PhoneFactor-Verify" TechnicalProfileReferenceId="PhoneFactor-InputOrVerify" />
           </ClaimsExchanges>
+        </OrchestrationStep> -->
+        <OrchestrationStep Order="9" Type="InvokeSubJourney">
+          <Preconditions>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>strongAuthenticationPhoneNumber</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <JourneyList>
+            <Candidate SubJourneyReferenceId="MFA-ExtraUserVerification" />
+          </JourneyList>
         </OrchestrationStep>
-
-        <!-- Save MFA phone number: The precondition verifies whether the user provided a new number
-      in the 
-           previous step. If so, then the phone number is stored in the directory for future authentication 
-           requests. -->
-        <OrchestrationStep Order="8" Type="ClaimsExchange">
+        <!-- Save MFA phone number: The precondition verifies whether the user provided a new number in the 
+           previous step. If so, then the phone number is stored in the directory for future authentication requests. -->
+        <OrchestrationStep Order="10" Type="ClaimsExchange">
           <Preconditions>
             <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
               <Value>newPhoneNumberEntered</Value>
@@ -291,18 +296,20 @@
             <ClaimsExchange Id="AADUserWriteWithObjectId" TechnicalProfileReferenceId="AAD-UserWritePhoneNumberUsingObjectId" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <OrchestrationStep Order="9" Type="ClaimsExchange">
+        
+        <OrchestrationStep Order="11" Type="ClaimsExchange">
           <Preconditions>
-            <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
-              <Value>email</Value>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>isOnboarded</Value>
+              <Value>True</Value>
               <Action>SkipThisOrchestrationStep</Action>
             </Precondition>
           </Preconditions>
           <ClaimsExchanges>
-            <ClaimsExchange Id="GetMessageClaimsExchange" TechnicalProfileReferenceId="LookupIdentity" />
+            <ClaimsExchange Id="OnboardCustomer" TechnicalProfileReferenceId="CustomerManagementOnboard" />
           </ClaimsExchanges>
         </OrchestrationStep>
-        <OrchestrationStep Order="10" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
+        <OrchestrationStep Order="12" Type="SendClaims" CpimIssuerTechnicalProfileReferenceId="JwtIssuer" />
       </OrchestrationSteps>
       <ClientDefinition ReferenceId="DefaultWeb" />
     </UserJourney>
@@ -415,6 +422,83 @@
       </OrchestrationSteps>
     </UserJourney>
   </UserJourneys>
+  <SubJourneys>
+    <SubJourney Id="PasswordReset" Type="Call">
+      <OrchestrationSteps>
+        <!-- Validate user's email address. -->
+        <OrchestrationStep Order="1" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="PasswordResetUsingEmailAddressExchange" TechnicalProfileReferenceId="LocalAccountDiscoveryUsingEmailAddress" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+
+        <!-- Collect and persist a new password. -->
+        <OrchestrationStep Order="2" Type="ClaimsExchange">
+          <ClaimsExchanges>
+            <ClaimsExchange Id="NewCredentials" TechnicalProfileReferenceId="LocalAccountWritePasswordUsingObjectId" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+      </OrchestrationSteps>
+    </SubJourney>
+    <SubJourney Id="MFA-ExtraUserVerification" Type="Call">
+      <OrchestrationSteps>
+        <!-- Phone verification: If MFA is not required, the next three steps (#5-#7) should be
+        removed.                 This step checks whether there's a phone number on record,  for the user. If found,
+        then the user is challenged to verify it. -->
+        <OrchestrationStep Order="1" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>isLsMail</Value>
+              <Value>True</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>strongAuthenticationPhoneNumber</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="EnrolPhone" TechnicalProfileReferenceId="Custom-SMS-Enrol" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <OrchestrationStep Order="2" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>isLsMail</Value>
+              <Value>True</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="true">
+              <Value>mfaPhoneNumber</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="VerifyPhone" TechnicalProfileReferenceId="Custom-SMS-Verify" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+        <!-- Save MFA phone number: The precondition verifies whether the user provided a new number
+        in the                 previous step. If so, then the phone number is stored in the directory for future
+        authentication                 requests. -->
+        <OrchestrationStep Order="3" Type="ClaimsExchange">
+          <Preconditions>
+            <Precondition Type="ClaimEquals" ExecuteActionsIf="true">
+              <Value>isLsMail</Value>
+              <Value>True</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+            <Precondition Type="ClaimsExist" ExecuteActionsIf="false">
+              <Value>newPhoneNumberEntered</Value>
+              <Action>SkipThisOrchestrationStep</Action>
+            </Precondition>
+          </Preconditions>
+          <ClaimsExchanges>
+            <ClaimsExchange Id="AADUserWriteWithObjectId" TechnicalProfileReferenceId="AAD-UserWritePhoneNumberUsingObjectId" />
+          </ClaimsExchanges>
+        </OrchestrationStep>
+      </OrchestrationSteps>
+    </SubJourney>
+  </SubJourneys>
   <RelyingParty>
     <DefaultUserJourney ReferenceId="SignUpOrSignIn" />
     <Endpoints>
@@ -427,7 +511,7 @@
       <SingleSignOn Scope="Application" KeepAliveInDays="5" EnforceIdTokenHintOnLogout="false"></SingleSignOn>
       <SessionExpiryType>Rolling</SessionExpiryType>
       <SessionExpiryInSeconds>86400</SessionExpiryInSeconds>
-      <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="94aecdf6-c1ee-4181-a970-662cf46e9b81" DeveloperMode="true" ClientEnabled="false" ServerEnabled="true" TelemetryVersion="1.0.0" />
+      <JourneyInsights TelemetryEngine="ApplicationInsights" InstrumentationKey="94aecdf6-c1ee-4181-a970-662cf46e9b81" DeveloperMode="true" ClientEnabled="true" ServerEnabled="true" TelemetryVersion="1.0.0" />
       <ContentDefinitionParameters>
         <Parameter Name="lang">{Culture:LanguageName}</Parameter>
         <Parameter Name="clientId">{OIDC:ClientId}</Parameter>
@@ -443,13 +527,13 @@
         <OutputClaim ClaimTypeReferenceId="givenName" />
         <OutputClaim ClaimTypeReferenceId="surname" />
         <OutputClaim ClaimTypeReferenceId="email" />
-        <OutputClaim ClaimTypeReferenceId="force"/>
+        <OutputClaim ClaimTypeReferenceId="force" />
         <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub" />
         <OutputClaim ClaimTypeReferenceId="identityProvider" />
         <OutputClaim ClaimTypeReferenceId="tenantId" AlwaysUseDefaultValue="true" DefaultValue="{Policy:TenantObjectId}" />
         <OutputClaim ClaimTypeReferenceId="strongAuthenticationPhoneNumber" />
-        <OutputClaim ClaimTypeReferenceId="ssoExists"/>
-        <OutputClaim ClaimTypeReferenceId="isOnboarded"/>
+        <OutputClaim ClaimTypeReferenceId="ssoExists" />
+        <OutputClaim ClaimTypeReferenceId="isOnboarded" />
       </OutputClaims>
       <SubjectNamingInfo ClaimType="sub" />
     </TechnicalProfile>

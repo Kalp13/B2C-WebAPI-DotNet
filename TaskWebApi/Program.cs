@@ -1,9 +1,8 @@
+using Azure.Monitor.OpenTelemetry.AspNetCore;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 using TaskWebApi;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// The following line enables Application Insights telemetry collection.
-builder.Services.AddApplicationInsightsTelemetry();
 
 // Add services to the container.
 builder.Services.AddTransient<IAzureAdLookupService, AzureAdLookupService>();
@@ -13,6 +12,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Logging.AddApplicationInsights(
+        configureTelemetryConfiguration: (config) =>
+            config.ConnectionString = builder.Configuration.GetValue<string>("ApplicationInsights:ConnectionString"),
+            configureApplicationInsightsLoggerOptions: (options) => { });
+
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("validationController", LogLevel.Trace);
 
 var app = builder.Build();
 

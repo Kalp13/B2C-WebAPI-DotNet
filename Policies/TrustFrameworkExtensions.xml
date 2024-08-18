@@ -113,6 +113,14 @@
         </Metadata>
       </ContentDefinition>
 
+      <ContentDefinition Id="api.phoneverify">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/api.phoneverify.cshtml</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.0.0</DataUri>
+        <Metadata>
+            <Item Key="DisplayName">Local account change password page</Item>
+        </Metadata>
+    </ContentDefinition>
     </ContentDefinitions>
   </BuildingBlocks>
   <ClaimsProviders>
