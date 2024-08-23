@@ -1,0 +1,134 @@
+<html lang="en">
+
+<head>
+    <title>Sign up or sign in</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="https://ssotestsarfk.blob.core.windows.net/scripts/scripts.js"></script>
+    <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.5/css/bootstrap-theme.min.css" rel="stylesheet"
+        type="text/css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <link rel="stylesheet" href="C:\VSTS\B2CWebApiTest\templates\AzureBlue\styles\platform.css">
+</head>
+
+<body>
+    <noscript>
+        <div id="no_js">
+            <div class="error_container">
+                <div>
+                    <h1>We can't sign you in</h1>
+                    <p>Your browser is currently set to block JavaScript. You need to allow JavaScript to use this
+                        service.</p>
+                    <p>To learn how to allow JavaScript or to find out whether your browser supports JavaScript, check
+                        the online help in your web browser.</p>
+                </div>
+            </div>
+        </div>
+    </noscript>
+    <script id="ApplicationInsights" data-script="ApplicationInsights"
+        nonce="QrZFve8KeOHJ/JoFjyMUFw==">"use strict"; var appInsights = window.appInsights || function (config) { function s(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, r = document, f = window, e = 'script', o = r.createElement(e), i, u; for (o.src = config.url || '//az416426.vo.msecnd.net/scripts/a/ai.0.js', r.getElementsByTagName(e)[0].parentNode.appendChild(o), t.cookie = r.cookie, t.queue = [], i = ['Event', 'Exception', 'Metric', 'PageView', 'Trace']; i.length;) s('track' + i.pop()); return config.disableExceptionTracking || (i = 'onerror', s('_' + i), u = f[i], f[i] = function (config, r, f, e, o) { var s = u && u(config, r, f, e, o); return s !== !0 && t['_' + i](config, r, f, e, o), s }), t }({ instrumentationKey: '94aecdf6-c1ee-4181-a970-662cf46e9b81' }); window.appInsights = appInsights; appInsights.config.enableDebug = true; appInsights.trackPageView();</script>
+    <div class="single-sign-on">
+        <div id="background_branding_container" data-tenant-branding-background-color="true">
+            <img data-tenant-branding-background="true" class="backgroundImage" alt="Illustration">
+        </div>
+        <div class="container  unified_container" role="presentation">
+            <div class="row formWrapper">
+                <div class="col-lg-6 formDisplay">
+                    <div class="panel panel-default formContainer">
+                        <div class="panel-body formBody">
+                            <a href="https://lightstone.co.za/">
+                                <img class="companyLogo" data-tenant-branding-logo="true" alt="Company Logo">
+                            </a>
+                            <div id="api" data-name="Unified" class="" role="main">
+                                <div class="claims-provider-list-buttons social" aria-label="OR" role="form">
+                                    <div class="intro">
+                                        <h2 aria-level="1">OR</h2>
+                                    </div>
+                                    <div class="options">
+                                        <div>
+                                            <button class="accountButton firstButton claims-provider-selection"
+                                                id="FacebookExchange" role="link" autofocus=""></button>
+                                        </div>
+                                        <div>
+                                            <button class="accountButton claims-provider-selection"
+                                                id="MicrosoftAccountExchange" role="link"></button>
+                                        </div>
+                                        <div>
+                                            <button class="accountButton claims-provider-selection" id="GoogleExchange"
+                                                role="link"></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="divider">
+                                    <h2>OR</h2>
+                                </div>
+                                <form id="localAccountForm" action="JavaScript:void(0);" class="localAccount"
+                                    aria-label="Sign in with your email address">
+                                    <div class="intro">
+                                        <h2 aria-level="1">
+                                            Sign in with your email address
+                                        </h2>
+                                    </div>
+                                    <div class="error pageLevel" aria-hidden="true" role="alert" style="display: none;">
+                                        <p></p>
+                                    </div>
+                                    <div class="entry">
+                                        <div class="entry-item">
+                                            <label for="signInName">
+                                                Email Address
+                                            </label>
+                                            <div class="error itemLevel" aria-hidden="true" role="alert"
+                                                style="display: none;">
+                                                <p></p>
+                                            </div>
+                                            <input type="text" id="signInName" name="Email Address"
+                                                title="Please enter a valid Email Address"
+                                                pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" autofocus=""
+                                                placeholder="Email Address" aria-label="Email Address">
+                                        </div>
+                                        <div class="entry-item">
+                                            <div class="password-label">
+                                                <label for="password">Password</label>
+                                                <a id="forgotPassword"
+                                                    href="/tridentdevlsg.onmicrosoft.com/B2C_1A_signup_signin/api/CombinedSigninAndSignup/unified?claimsexchange=ForgotPasswordExchange&amp;csrf_token=N04rcHZteGlpV0lBT0NhYTRkZFlreWk4VlBPY21mODU5LzBHYmR2OCtCQVRZTXpuZ211eVJCTGZmZitOeFJod1FiOHFJWEMxWFpxNXl1R3BVZ0U3RFE9PTsyMDI0LTA4LTE4VDE5OjU2OjEzLjUxNjg5ODhaOytJdUE5dEMxTUVkSUZqc3lqUlA2L1E9PTt7Ik9yY2hlc3RyYXRpb25TdGVwIjoxfQ==&amp;tx=StateProperties=eyJUSUQiOiIzOGUxYzVlMS02ODRhLTQ0MzEtYWQzYi1hMWE0ZjhkNzlhMzEifQ&amp;p=B2C_1A_signup_signin">Forgot
+                                                    your password?</a>
+                                            </div>
+                                            <div class="error itemLevel" aria-hidden="true" style="display: none;">
+                                                <p role="alert"></p>
+                                            </div>
+                                            <input type="password" id="password" name="Password" placeholder="Password"
+                                                aria-label="Password" autocomplete="current-password"
+                                                aria-required="true">
+                                        </div>
+                                        <div class="working"></div>
+
+
+                                        <div class="buttons">
+                                            <button id="next" type="submit" form="localAccountForm">Sign in</button>
+                                        </div>
+                                    </div>
+                                    <div class="divider">
+                                        <h2>OR</h2>
+                                    </div>
+                                    <div class="create">
+                                        <p>
+                                            Don't have an account?<a id="createAccount"
+                                                href="/tridentdevlsg.onmicrosoft.com/B2C_1A_signup_signin/api/CombinedSigninAndSignup/unified?local=signup&amp;csrf_token=N04rcHZteGlpV0lBT0NhYTRkZFlreWk4VlBPY21mODU5LzBHYmR2OCtCQVRZTXpuZ211eVJCTGZmZitOeFJod1FiOHFJWEMxWFpxNXl1R3BVZ0U3RFE9PTsyMDI0LTA4LTE4VDE5OjU2OjEzLjUxNjg5ODhaOytJdUE5dEMxTUVkSUZqc3lqUlA2L1E9PTt7Ik9yY2hlc3RyYXRpb25TdGVwIjoxfQ==&amp;tx=StateProperties=eyJUSUQiOiIzOGUxYzVlMS02ODRhLTQ0MzEtYWQzYi1hMWE0ZjhkNzlhMzEifQ&amp;p=B2C_1A_signup_signin">Sign
+                                                up now</a>
+                                        </p>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

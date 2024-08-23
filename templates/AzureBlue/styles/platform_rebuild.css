@@ -98,7 +98,6 @@
     --bs-body-font-family: var(--bs-font-sans-serif);
     --bs-body-font-size: 1rem;
     --bs-body-font-weight: 400;
-    --bs-link-font-weight: 700;
     --bs-body-line-height: 1.5;
     --bs-body-color: #212529;
     --bs-body-color-rgb: 33, 37, 41;
@@ -348,314 +347,234 @@
 }
 
 .single-sign-on {
-    height: 100%;
+    display: inline-table;
     width: 100%;
-    position: absolute;
-    right: 0;
-    background-image: var(--img-background-common) !important;
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: contain;
-    font-size: 1.5rem !important;
 }
 
 /*Single Sign-On Styling*/
 @scope (.single-sign-on) {
     :scope {
-        .ssoContent {
-            display: inline-table;
-            height: 100vh;
+
+        body {
+            background-attachment: fixed;
+            background-color: var(--bs-white);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font: -apple-system-body;
+            font-family: var(--bs-font-sans-serif);
             margin: 0;
             padding: 0;
-            text-align: -webkit-center;
             text-align: center;
-            vertical-align: middle;
-        }
-
-        .main {
-            display: table-cell;
-            vertical-align: middle;
-            text-align: center;
-            text-align: -webkit-center;
-            background-color: var(--bs-white);
-        }
-
-        .companyLogo {
-            content: var(--logo);
-        }
-
-        .formDisplay {
-            display: inline-block;
-            height: 100%;
-            vertical-align: middle;
-            padding: 0 !important;
-        }
-
-        .formPanel {
-            display: inline-block;
-            width: 100%;
-            margin: 0 auto;
-            border-radius: 5px;
-            background-color: var(--bs-white);
-            height: 100%;
-            padding: 2em 0;
-        }
-
-        .formBody {
-            text-align: -webkit-center;
-            text-align: center;
-            display: block;
-            width: 60%;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        .formBody a {
-            width: 100%;
+            font-weight: 600;
+            font-size: var(--bs-body-font-size);
         }
 
         #api {
-            margin-top: 2em;
+            height: 100%;
             width: 100%;
             min-height: 25vh;
             padding: 0 3%;
-            display: flex;
+            display: table;
             flex-direction: column;
             overflow-y: auto;
+            margin: 1em auto;
         }
 
-        #api .divider h2 {
-            font-size: 2rem;
+        .container {
+            text-align: center;
+            width: 100%;
+            display: table;
+            height: 100vh;
+            padding: 0;
+            padding: 3rem 1rem
         }
 
-        #api>#localAccountForm {
-            order: 0;
+        .panel-default {
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+            padding: 40px 30px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: var(--bs-white)
+        }
+
+        #api button {
+            border-radius: 0.375rem;
+            font-family: var(--bs-font-sans-serif);
+            font-style: normal;
+            font-weight: 500;
+            font-size: var(--bs-body-font-size);
+            line-height: 1.25rem;
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 0.75rem 0;
+            color: #0033A0;
+            border: 1.5px solid #0033A0;
+            background: var(--white, #fff);
+        }
+
+        #api .social {
+            display: table-footer-group;
+            position: relative;
+            top: 1px;
+            width: auto;
+            /* top: 370px; */
+            width: 100%;
         }
 
         #api>.divider {
             order: 1;
+            display: none;
         }
 
         #api>.social {
             order: 2;
         }
 
-        #api .intro p {
-            font-size: 1.1em;
-            margin: 0 !important;
+        #api>.localAccount {
+            order: 0;
+            position: relative;
         }
 
-        #attributeList {
-            margin-top: 2em;
+        #api>.localAccount .password-label {
+            order: 2;
+            position: absolute;
+            right: 0;
+            bottom: -1rem;
         }
 
-        #attributeList ul {
-            margin-top: -20px;
-            padding: 0;
+        .companyLogo {
+            display: block;
+            content: var(--logo);
+            height: 70px;
+            max-width: 100%;
+            width: fit-content;
+            margin: 0 auto;
         }
 
-        #attributeList ul li {
-            list-style: none;
-            margin: 1rem 0
-        }
-
-        #attributeList ul li .attrEntry {
-            margin: 0 !important;
-        }
-
-        input[type="text"], input[type="password"] {
-            padding: 10px 16px;
-            margin: 10px 0;
-            width: 100%;
-            font-size: 1em;
-            font-family: var(--bs-body-font-family);
-            border: 2px solid var(--bs-gray-800);
-            border-radius: 5px;
-        }
-
-        input[type="radio"] {
-            margin: 0 0.2em 0 1em;
-        }
-
-        .attrEntry #sms_option,
-        .attrEntry #whatsapp_option {
-            font-size: var(--bs-body-font-size);
-            margin-left: 0.2em;
-        }
-
-        #contactMethod_label {
-            font-size: var(--bs-body-font-size);
-            text-transform: none;
-        }
-
-        button {
-            background-color: var(--bs-white);
-            color: var(--bs-primary);
-            border: 2px solid var(--bs-primary);
-            padding: 10px 16px;
-            margin: 10px 0;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: var(--bs-primary) !important;
-            color: var(--bs-white) !important;
-        }
-
-        .error {
-            color: var(--bs-danger);
-        }
-
-        .options {
+        #background_branding_container {
             display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100%;
+            right: 0px;
+            background-color: var(--bs-white);
+        }
+
+        .backgroundImage {
+            content: var(--img-background-common);
             width: 100%;
-            justify-content: space-between;
+            height: 100%;
+            object-fit: contain;
+            object-position: right;
+            z-index: 0;
+            position: fixed;
+            left: 0;
+            overflow: hidden;
+            top: 0
         }
 
-        .accountButton {
-            width: 100px !important;
-            display: inline-flex !important;
-            min-height: min-content !important;
-            background-size: auto !important;
-            background-position: center !important;
-            background-color: var(--bs-white) !important;
-            background-repeat: no-repeat !important;
-            border: 1px solid var(--bs-black) !important;
-            text-align: center !important;
-            height: 50px !important;
-            border-radius: 25px !important;
+        .signinsignupForm {
+            display: table !important;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
         }
 
-        .accountButton:hover {
-            background-color: var(--bs-gray-700) !important;
+        .formWrapper {
+            width: 100%;
+            margin: 0;
+            display: table-cell;
+            vertical-align: middle
         }
 
-        .entry .entry-item {
-            display: grid;
+        .container {
+            text-align: center;
+            margin-left: 0px;
+            width: 40%;
+            display: table;
+            height: 100vh;
+            padding: 0;
+            padding: 3rem 1rem;
+            border: 1px solid black !important;
         }
 
-        .entry .entry-item label,
-        #email_label,
-        #newPassword_label,
-        #reenterPassword_label,
-        .social .intro,
-        #localAccountForm .divider,
-        .helpLink,
-        #email_ver_input_label,
-        #mfaPhoneNumber_label,
-        #mfaCountryCode_label,
-        #displayName_label,
-        #givenName_label,
-        #surname_label {
+        .formContainer {
+            padding: 40px 30px;
+            margin-top: auto;
+            margin-bottom: auto;
+            height: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            background-color: var(--bs-white)
+        }
+
+        .formBody {
+            display: inline-table;
+            margin-top: 40px;
+            width: 70%;
+            vertical-align: middle;
+        }
+
+        .error_container {
             display: none !important;
         }
 
-        #mfaPhoneNumber,
-        #mfaCountryCode {
-            font-size: var(--bs-body-font-size);
+        .formDisplay {
+            max-width: 100%;
+            width: 100% !important;
+            display: inline-table;
+            vertical-align: top;
+            padding: 0 !important;
+            float: left;
+            height: 100%;
+            padding: 0
         }
 
-        .entry .entry-item>input {
-            order: 0;
+        .error_container {
+            display: none;
+            visibility: hidden;
         }
 
-        .entry .entry-item>.error {
-            order: 1;
+        .accountButton {
+            height: 40px;
         }
 
-        .entry .entry-item>.password-label{
-            order: 2;
-            text-align: start;
+        .entry-item {
+            position: relative;
+            outline: 0;
+            background-color: var(--bs-white) !important;
+            background-image: none !important;
+            border-radius: 1em !important;
+            color: var(--bs-gray-700);
+            display: inline-block;
+            font-size: 1.5em;
+            height: 50px;
+            line-height: 1.42857143;
+            padding: 6px 20px;
+            width: 100%;
+            margin: 0 1em;
         }
 
-        .create {
-            text-align: start;
+        .forgot-password {
+            text-align: left;
         }
 
-        a {
-            font-weight: var(--bs-link-font-weight);
+        .entry-item label {
+            display: none
         }
 
-        .create a {
-            margin-left: 1em;
-        }
-
-        ..intro p {
-            margin: 0;
-            font-size: var(--bs-body-font-size);
-        }
-
-        #SignInWithLogonNameExchange,
-        #SignUpWithLogonEmailExchange,
-        #SignUpWithLogonNameExchange {
-            background-image: var(--img-icon-colored-local);
-        }
-
-        #SignInWithLogonNameExchange:hover,
-        #SignUpWithLogonEmailExchange:hover,
-        #SignUpWithLogonNameExchange:hover {
-            filter: brightness(0) invert(1);
-        }
-
-        #SignUpWithLogonEmailExchange.text-link {
-            background-image: none;
-            background-color: transparent !important;
-        }
-
-        #SignUpWithLogonEmailExchange.text-link:hover {
-            background-image: none;
-            background-color: transparent !important;
-        }
-
-        #AmazonExchange {
-            background-image: var(--img-icon-colored-amazon);
-        }
-
-        #FacebookExchange {
-            background-image: var(--img-idp-facebook) !important;
-        }
-
-        #GitHubExchange {
-            background-image: var(--img-icon-colored-github);
-        }
-
-        #AppleExchange,
-        #AppleManagedExchange {
-            background-image: var(--img-icon-colored-apple);
-        }
-
-        #GoogleExchange {
-            background-image: var(--img-idp-google) !important;
-        }
-
-        #LinkedInExchange {
-            background-image: var(--img-icon-colored-linkedin);
-        }
-
-        #MicrosoftAccountExchange {
-            background-image: var(--img-idp-microsoft) !important;
-        }
-
-        #QQExchange {
-            background-image: var(--img-icon-colored-qq);
-        }
-
-        #TwitterExchange {
-            background-image: var(--img-icon-colored-twitter);
-        }
-
-        #WeChatExchange {
-            background-image: var(--img-icon-colored-wechat);
-        }
-
-        #WeiboExchange {
-            background-image: var(--img-icon-colored-weibo);
-        }
-
-        #OktaExchange {
-            background-image: var(--img-icon-colored-okta) !important;
+        .entry-item input{
+            width: 100%;
+            padding: 1rem;
+            border-radius: 1em;
+            border: 2px solid var(--bs-black);
         }
     }
 }

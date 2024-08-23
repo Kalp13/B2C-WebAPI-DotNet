@@ -580,6 +580,15 @@
           <Item Key="DisplayName">Collect information from user page</Item>
         </Metadata>
       </ContentDefinition>
+
+      <ContentDefinition Id="api.phoneverify">
+        <LoadUri>~/tenant/templates/AzureBlue/api.phoneverify.cshtml</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+            <Item Key="DisplayName">Multi-factor authentication page</Item>
+        </Metadata>
+      </ContentDefinition>
     </ContentDefinitions>
     <DisplayControls>
         <DisplayControl Id="phoneVerificationControl-readOnly" UserInterfaceControlType="VerificationControl">
@@ -1480,8 +1489,7 @@
         </TechnicalProfile>
       </TechnicalProfiles>
     </ClaimsProvider>
-    <!--claims
-    provider for refresh token revocation-->
+    <!--claims provider for refresh token revocation-->
     <ClaimsProvider>
       <DisplayName>Refresh token journey</DisplayName>
       <TechnicalProfiles>
@@ -1561,7 +1569,7 @@
                 <DisplayName>Check single sign-on user details</DisplayName>
                 <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
                 <Metadata>
-                    <Item Key="ServiceUrl">http://empty/</Item>
+                    <Item Key="ServiceUrl">https://taskwebapi20240719070204.azurewebsites.net/api/Validation/LookupIdentity</Item>
                     <Item Key="AuthenticationType">None</Item>
                     <Item Key="SendClaimsIn">QueryString</Item>
                     <Item Key="AllowInsecureAuthInProduction">true</Item>
@@ -1622,26 +1630,11 @@
                 </InputClaims>
                 <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
             </TechnicalProfile>
-            <TechnicalProfile Id="SSORestAPI-SignIn-log">
-                <DisplayName>Validate user input data and return loyaltyNumber claim</DisplayName>
-                <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
-                <Metadata>
-                    <Item Key="ServiceUrl">http://empty/</Item>
-                    <Item Key="AuthenticationType">None</Item>
-                    <Item Key="SendClaimsIn">QueryString</Item>
-                    <Item Key="AllowInsecureAuthInProduction">true</Item>
-                </Metadata>
-                <InputClaims>
-                    <InputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="partyId" />
-                    <InputClaim ClaimTypeReferenceId="tenantId" PartnerClaimType="tenantId" />
-                </InputClaims>
-                <UseTechnicalProfileForSessionManagement ReferenceId="SM-Noop" />
-            </TechnicalProfile>
             <TechnicalProfile Id="CustomerManagementOnboard">
                 <DisplayName>Onboards customer via CustomerManagement</DisplayName>
                 <Protocol Name="Proprietary" Handler="Web.TPEngine.Providers.RestfulProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
                 <Metadata>
-                    <Item Key="ServiceUrl">http://empty/</Item>
+                    <Item Key="ServiceUrl">https://taskwebapi20240719070204.azurewebsites.net/api/Validation/OnboardUser</Item>
                     <Item Key="AuthenticationType">None</Item>
                     <Item Key="SendClaimsIn">QueryString</Item>
                     <Item Key="AllowInsecureAuthInProduction">true</Item>

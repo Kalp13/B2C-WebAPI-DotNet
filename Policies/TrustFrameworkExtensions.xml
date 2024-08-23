@@ -116,9 +116,9 @@
       <ContentDefinition Id="api.phoneverify">
         <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/api.phoneverify.cshtml</LoadUri>
         <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
-        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.0.0</DataUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
         <Metadata>
-            <Item Key="DisplayName">Local account change password page</Item>
+            <Item Key="DisplayName">Multi-factor authentication page</Item>
         </Metadata>
     </ContentDefinition>
     </ContentDefinitions>
@@ -145,8 +145,8 @@
             <Item Key="IdTokenAudience">2c50b1c6-ae8b-44b9-b20c-34140e8c30e1</Item>
           </Metadata>
           <InputClaims>
-            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="ProxyIdentityExperienceFrameworkAppId" />
-            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="IdentityExperienceFrameworkAppId" />
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="cf559881-8c11-4e44-ab13-9f6184fc9e09" />
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="2c50b1c6-ae8b-44b9-b20c-34140e8c30e1" />
           </InputClaims>
         </TechnicalProfile>
       </TechnicalProfiles>

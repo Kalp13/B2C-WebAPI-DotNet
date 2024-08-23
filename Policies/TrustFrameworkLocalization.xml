@@ -62,6 +62,12 @@
           <!-- Add more languages here -->
         </LocalizedResourcesReferences>
       </ContentDefinition>
+      <ContentDefinition Id="api.phoneverify">
+        <LocalizedResourcesReferences MergeBehavior="Prepend">
+          <LocalizedResourcesReference Language="en" LocalizedResourcesReferenceId="api.phoneverify.en" />
+          <!-- Add more languages here -->
+        </LocalizedResourcesReferences>
+      </ContentDefinition>
     </ContentDefinitions>
     <Localization Enabled="true">
       <SupportedLanguages DefaultLanguage="en" MergeBehavior="Append">
@@ -291,6 +297,13 @@
           <LocalizedString ElementType="UxElement" StringId="error_449">User has exceeded the number of retry attempts.</LocalizedString>
           <LocalizedString ElementType="UxElement" StringId="verification_code_input_placeholder_text">Verification code</LocalizedString>
           <LocalizedString ElementType="ClaimType" ElementId="strongAuthenticationPhoneNumber" StringId="DisplayName">Phone Number</LocalizedString>
+        </LocalizedStrings>
+      </LocalizedResources>
+      <!-- Phone Verify English-->
+      <LocalizedResources Id="api.phoneverify.en">
+        <LocalizedStrings>
+          <LocalizedString ElementType="ClaimType" ElementId="mfaPhoneNumber" StringId="DisplayName">Phone Number</LocalizedString>
+          <LocalizedString ElementType="ClaimType" ElementId="mfaCountryCode" StringId="DisplayName">Country Code</LocalizedString>
         </LocalizedStrings>
       </LocalizedResources>
       <!-- Add more languages here -->
