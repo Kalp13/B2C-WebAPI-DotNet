@@ -1,0 +1,138 @@
+<TrustFrameworkPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/online/cpim/schemas/2013/06" PolicySchemaVersion="0.3.0.0" TenantId="tridentdevlsg.onmicrosoft.com" PolicyId="B2C_1A_TrustFrameworkExtensions" PublicPolicyUri="http://tridentdevlsg.onmicrosoft.com/B2C_1A_TrustFrameworkExtensions" TenantObjectId="b03a62a3-c312-4977-9d54-66d8aa63abbb">
+  <BasePolicy>
+    <TenantId>tridentdevlsg.onmicrosoft.com</TenantId>
+    <PolicyId>B2C_1A_TrustFrameworkLocalization</PolicyId>
+  </BasePolicy>
+  <BuildingBlocks>
+    <ContentDefinitions>
+      <!-- This content definition is to render an error page that displays unhandled errors. -->
+      <ContentDefinition Id="api.error">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/exception.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:globalexception:1.2.1</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Error page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.signuporsignin">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/unified.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:unifiedssp:2.1.5</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Signin and Signup</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.idpselections">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/idpSelector.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:providerselection:1.2.1</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Idp selection page</Item>
+          <Item Key="language.intro">Sign in</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.idpselections.signup">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/idpSelector.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:providerselection:1.2.1</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Idp selection page</Item>
+          <Item Key="language.intro">Sign up</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.phonefactor">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/multifactor-1.0.0.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:multifactor:1.2.5</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Multi-factor authentication page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.selfasserted">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Collect information from user page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.selfasserted.profileupdate">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Collect information from user page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.localaccountsignup">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Local account sign up page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.localaccountpasswordreset">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Local account change password page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.socialccountsignup">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Collect information from user page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.localaccountsignin">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/selfAsserted.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Collect information from user page</Item>
+        </Metadata>
+      </ContentDefinition>
+      <ContentDefinition Id="api.phoneverify">
+        <LoadUri>https://ssotestsarfk.blob.core.windows.net/pages/api.phoneverify.html</LoadUri>
+        <RecoveryUri>~/common/default_page_error.html</RecoveryUri>
+        <DataUri>urn:com:microsoft:aad:b2c:elements:contract:selfasserted:2.1.7</DataUri>
+        <Metadata>
+          <Item Key="DisplayName">Multi-factor authentication page</Item>
+        </Metadata>
+      </ContentDefinition>
+    </ContentDefinitions>
+  </BuildingBlocks>
+  <ClaimsProviders>
+    <ClaimsProvider>
+      <DisplayName>Facebook</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="Facebook-OAUTH">
+          <Metadata>
+            <Item Key="client_id">facebook_clientid</Item>
+            <Item Key="scope">email public_profile</Item>
+            <Item Key="ClaimsEndpoint">https://graph.facebook.com/me?fields=id,first_name,last_name,name,email</Item>
+          </Metadata>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+    <ClaimsProvider>
+      <DisplayName>Local Account SignIn</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="login-NonInteractive">
+          <Metadata>
+            <Item Key="client_id">cf559881-8c11-4e44-ab13-9f6184fc9e09</Item>
+            <Item Key="IdTokenAudience">2c50b1c6-ae8b-44b9-b20c-34140e8c30e1</Item>
+          </Metadata>
+          <InputClaims>
+            <InputClaim ClaimTypeReferenceId="client_id" DefaultValue="cf559881-8c11-4e44-ab13-9f6184fc9e09" />
+            <InputClaim ClaimTypeReferenceId="resource_id" PartnerClaimType="resource" DefaultValue="2c50b1c6-ae8b-44b9-b20c-34140e8c30e1" />
+          </InputClaims>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+  </ClaimsProviders>
+</TrustFrameworkPolicy>
